@@ -8,15 +8,13 @@ on:
   workflow_dispatch:
 
 jobs:
-  # ① ReaderCore（规则引擎等核心层）在 Linux 上跑全部单测
+  # ① ReaderCore（规则引擎等核心层）在 Linux 上跑全部单测（官方 Swift 容器）
   core-tests:
     name: ReaderCore unit tests (Linux)
     runs-on: ubuntu-latest
+    container: swift:6.0
     steps:
       - uses: actions/checkout@v4
-      - uses: swift-actions/setup-swift@v2
-        with:
-          swift-version: "6.0"
       - name: Run ReaderCore tests
         working-directory: Packages/ReaderCore
         run: set -o pipefail && swift test 2>&1 | tee swift-test.log
