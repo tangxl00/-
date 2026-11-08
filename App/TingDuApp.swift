@@ -29,7 +29,10 @@ struct TingDuApp: App {
                 configurations: config
             )
         }
-        _services = StateObject(wrappedValue: AppServices(container: container))
+        // StateObject(wrappedValue:) 是逃逸 autoclosure，直接引用存储属性会捕获
+        // mutating self（struct init 内不合法）——先拷贝到局部变量再传入。
+        let modelContainer = container
+        _services = StateObject(wrappedValue: AppServices(container: modelContainer))
     }
 
     var body: some Scene {
