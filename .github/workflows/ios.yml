@@ -1,0 +1,69 @@
+name: ios
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+jobs:
+  # ① ReaderCore（规则引擎等核心层）在 Linux 上跑全部单测
+  core-tests:
+    name: ReaderCore unit tests (Linux)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: "6.0"
+      - name: Run ReaderCore tests
+        working-directory: Packages/ReaderCore
+        run: set -o pipefail && swift test 2>&1 | tee swift-test.log
+      - name: Upload test log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-test-log
+          path: Packages/ReaderCore/swift-test.log
+          if-no-files-found: ignore
+
+  # ② iOS 免签出包：archive + 打包未签名 IPA
+  ios-ipa:
+    name: iOS archive + unsigned IPA
+    runs-on: macos-15
+    needs: core-tests
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate project
+        run: xcodegen generate
+      - name: Archive (unsigned)
+        run: |
+          set -o pipefail
+          xcodebuild archive \
+            -project TingDu.xcodeproj \
+            -scheme TingDu \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/TingDu.xcarchive \
+            -configuration Release \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGN_IDENTITY="" CODE_SIGN_ENTITLEMENTS="" 2>&1 | tee xcodebuild-archive.log
+      - name: Package unsigned IPA
+        run: |
+          mkdir -p build/Payload
+          cp -R "build/TingDu.xcarchive/Products/Applications/TingDu.app" build/Payload/
+          cd build && zip -qry TingDu-unsigned.ipa Payload && cd ..
+          ls -la build/TingDu-unsigned.ipa
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: TingDu-unsigned-ipa
+          path: build/TingDu-unsigned.ipa
+      - name: Upload archive log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: xcodebuild-archive-log
+          path: xcodebuild-archive.log
+          if-no-files-found: ignore
