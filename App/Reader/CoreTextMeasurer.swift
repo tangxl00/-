@@ -68,12 +68,9 @@ struct CoreTextMeasurer: TextMeasuring {
             let attrString = NSAttributedString(string: paragraph, attributes: [
                 .font: Self.font(for: settings)
             ])
-            guard let typesetter = CTTypesetterCreateWithAttributedString(attrString) else {
-                out.append(TextLine(start: idx, end: paraEnd, height: baseLineHeight + leadExtra))
-                idx = paraEnd + 1
-                isFirstParagraph = false
-                continue
-            }
+            // v1.2.1：CTTypesetterCreateWithAttributedString 在 Apple 平台返回非 Optional
+            //（iOS/macOS 均是），`guard let` 属条件绑定非 Optional 编译错，改直接绑定。
+            let typesetter = CTTypesetterCreateWithAttributedString(attrString)
             var lineStartOffset = 0   // 段内偏移（UTF-16）
             let utf16Len = paragraph.utf16.count
             // 段内 Character 边界的 UTF-16 偏移集合（极窄宽度降级断行用，避免拆代理对）

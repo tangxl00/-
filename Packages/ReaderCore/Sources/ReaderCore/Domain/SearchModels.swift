@@ -195,7 +195,7 @@ public enum SearchAggregateState: String, Sendable {
 // MARK: - 合并后的书
 
 /// 同一本书（按 归一化书名+作者）跨多源的聚合结果。
-public struct MergedBook: Sendable, Equatable, Identifiable {
+public struct MergedBook: Sendable, Equatable, Identifiable, Hashable {
     public var id: String { key.raw }
     public var key: BookKey
     public var name: String
@@ -230,6 +230,13 @@ public struct MergedBook: Sendable, Equatable, Identifiable {
         self.sourceCount = sourceCount
         self.sources = sources
         self.bucket = bucket
+    }
+
+    /// v1.2.1：App 层 navigationDestination / Picker(value:) 需要 Hashable。
+    /// 手动实现（按归一化 key 哈希，与 Identifiable 的 id 同源），避免要求
+    /// sources / bucket 成员全员 Hashable；等值语义仍用合成 ==。
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(key.raw)
     }
 }
 

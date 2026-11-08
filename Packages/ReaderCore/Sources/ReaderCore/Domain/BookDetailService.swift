@@ -44,6 +44,15 @@ public struct BookChapter: Sendable, Equatable, Identifiable {
     /// 是否 VIP / 付费章节（P0 不绕过，只标记不让用户白点）
     public var isVip: Bool
     public var isPay: Bool
+
+    /// 跨模块（App 层）构造本地书章节表用；v1.2.1 补 public（原 memberwise init 为 internal）。
+    public init(title: String, url: String, index: Int, isVip: Bool, isPay: Bool) {
+        self.title = title
+        self.url = url
+        self.index = index
+        self.isVip = isVip
+        self.isPay = isPay
+    }
 }
 
 /// 目录拉取结果。`chapters` 是「本章已累计的全部章节」，失败重试时调用方应保留旧值。

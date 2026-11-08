@@ -74,6 +74,10 @@ final class BookRecord {
     /// 在线书：书源 URL；本地书：空
     var origin: String
     var originName: String
+    /// 在线书：目录页 URL（书源详情规则给出 tocUrl 时保存，拉目录优先用它；空 = 用 bookKey）
+    /// v1.2.1 补：App 层此前缺该字段，ReaderViewModel / BookDetailView 引用 book.tocUrl 编译不过。
+    /// 默认空串，SwiftData 轻量迁移安全。
+    var tocUrl: String = ""
     var isLocal: Bool
     /// 本地书：正文（UTF-8）；在线书：空
     var localText: Data?
@@ -92,6 +96,7 @@ final class BookRecord {
          coverUrl: String = "",
          origin: String = "",
          originName: String = "",
+         tocUrl: String = "",
          isLocal: Bool = false,
          localText: Data? = nil,
          localRuleID: String = TXTChapterRules.standard.id,
@@ -106,6 +111,7 @@ final class BookRecord {
         self.coverUrl = coverUrl
         self.origin = origin
         self.originName = originName
+        self.tocUrl = tocUrl
         self.isLocal = isLocal
         self.localText = localText
         self.localRuleID = localRuleID
@@ -256,6 +262,26 @@ final class SwiftDataProgressStore: ProgressStoring, @unchecked Sendable {
         if let r = try? context.fetch(FetchDescriptor<ProgressRecord>(predicate: #Predicate { $0.bookKey == bookKey })).first {
             context.delete(r)
             try? context.save()
+        }
+    }
+
+    /// v1.2.1 补：ProgressStoring 协议要求 allProgress()（书架「最近阅读」排序用），
+    /// 原实现漏掉导致不符合协议。按 updatedAt 降序返回全量进度。
+    func allProgress() -> [ReadingProgress] {
+        let context = ModelContext(container)
+        let descriptor = FetchDescriptor<ProgressRecord>(
+            sortBy: [SortDescriptor(\.updatedAt, order: .reverse)]
+        )
+        let records = (try? context.fetch(descriptor)) ?? []
+        return records.map { r in
+            ReadingProgress(
+                bookKey: r.bookKey,
+                chapterIndex: r.chapterIndex,
+                characterOffset: r.characterOffset,
+                chapterTitle: r.chapterTitle,
+                fraction: r.fraction,
+                updatedAt: r.updatedAt
+            )
         }
     }
 

@@ -72,6 +72,23 @@ public struct ImportReport: Sendable {
     public var jsDegradedCount: Int
     public var unsupportedTypeCount: Int
 
+    /// 跨模块（App 层）构造用；v1.2.1 补 public（原 memberwise init 为 internal）。
+    public init(
+        items: [ImportItemResult],
+        successCount: Int,
+        failureCount: Int,
+        duplicateCount: Int,
+        jsDegradedCount: Int,
+        unsupportedTypeCount: Int
+    ) {
+        self.items = items
+        self.successCount = successCount
+        self.failureCount = failureCount
+        self.duplicateCount = duplicateCount
+        self.jsDegradedCount = jsDegradedCount
+        self.unsupportedTypeCount = unsupportedTypeCount
+    }
+
     public var usableCount: Int { items.filter(\.isUsable).count }
 
     /// 「成功 N / 失败 M」文案（需求 2-1 要求导入结果必须显示）

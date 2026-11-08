@@ -70,7 +70,15 @@ final class ReaderViewModel: ObservableObject {
         if book.isLocal, let text = localText {
             let ruleID = book.localRuleID
             let rule = TXTChapterRules.rule(id: ruleID) ?? TXTChapterRules.standard
-            let result = TXTImporter.chapterize(text: text, bookName: book.name, rule: rule)
+            // v1.2.1：TXTImporter.chapterize 是 throws（规则正则非法等），
+            // 原实现缺 try 编译不过；补 do/catch，失败走统一 failed 态。
+            let result: TXTImportResult
+            do {
+                result = try TXTImporter.chapterize(text: text, bookName: book.name, rule: rule)
+            } catch {
+                loadState = .failed("本地分章失败：\(error)")
+                return
+            }
             localChapters = result.chapters
             chapters = result.chapters.enumerated().map { idx, ch in
                 BookChapter(title: ch.title, url: "", index: idx, isVip: false, isPay: false)

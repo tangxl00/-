@@ -222,6 +222,9 @@ struct MergedBookDetailView: View {
             coverUrl: detail.coverUrl ?? "",
             origin: detail.origin,
             originName: detail.originName,
+            // v1.2.1：目录页 URL 之前未落库，ReaderViewModel 拉目录时只能退回 bookUrl；
+            // 详情规则给出 tocUrl 时保存，后续拉目录优先用它。
+            tocUrl: detail.tocUrl,
             chapterCount: 0,
             lastChapterTitle: detail.lastChapter ?? ""
         )

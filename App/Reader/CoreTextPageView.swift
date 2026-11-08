@@ -59,7 +59,8 @@ final class CoreTextPageUIView: UIView {
                 ? line.text
                 : line.text
             let attr = NSAttributedString(string: lineText, attributes: attrs)
-            guard let ctLine = CTLineCreateWithAttributedString(attr) else { continue }
+            // v1.2.1：CTLineCreateWithAttributedString 返回非 Optional，去掉 guard let。
+            let ctLine = CTLineCreateWithAttributedString(attr)
             let baseline = y + CGFloat(line.height) * 0.8   // 近似基线（行高 × 0.8）
             ctx.textPosition = CGPoint(x: x, y: baseline)
             CTLineDraw(ctLine, ctx)
