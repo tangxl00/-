@@ -17,6 +17,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run ReaderCore tests
         working-directory: Packages/ReaderCore
+        shell: bash
         run: set -o pipefail && swift test 2>&1 | tee swift-test.log
       - name: Upload test log
         if: always()
