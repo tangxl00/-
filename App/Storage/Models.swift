@@ -115,6 +115,76 @@ final class BookRecord {
     }
 }
 
+// MARK: - 替换/净化规则记录（P0#2，v1.2.0）
+
+/// ReaderCore.ReplaceRule 的 SwiftData 落库形态（13 字段一一对应）。
+/// 排序用 sortOrder；唯一键 ruleID = ReplaceRule.id。
+@Model
+final class ReplaceRuleRecord {
+    @Attribute(.unique) var ruleID: String
+    var name: String
+    var group: String
+    var pattern: String
+    var replacement: String
+    var isRegex: Bool
+    var scope: String
+    var scopeTitle: Bool
+    var scopeContent: Bool
+    var excludeScope: String
+    var timeoutMillisecond: Int
+    var sortOrder: Int
+    var enable: Bool
+
+    init(rule: ReplaceRule) {
+        self.ruleID = rule.id
+        self.name = rule.name
+        self.group = rule.group
+        self.pattern = rule.pattern
+        self.replacement = rule.replacement
+        self.isRegex = rule.isRegex
+        self.scope = rule.scope
+        self.scopeTitle = rule.scopeTitle
+        self.scopeContent = rule.scopeContent
+        self.excludeScope = rule.excludeScope
+        self.timeoutMillisecond = rule.timeoutMillisecond
+        self.sortOrder = rule.sortOrder
+        self.enable = rule.enable
+    }
+
+    /// 用 ReplaceRule 覆写字段（ruleID 与 sortOrder 不动——排序走 reorderReplaceRules）。
+    func apply(_ rule: ReplaceRule) {
+        name = rule.name
+        group = rule.group
+        pattern = rule.pattern
+        replacement = rule.replacement
+        isRegex = rule.isRegex
+        scope = rule.scope
+        scopeTitle = rule.scopeTitle
+        scopeContent = rule.scopeContent
+        excludeScope = rule.excludeScope
+        timeoutMillisecond = rule.timeoutMillisecond
+        enable = rule.enable
+    }
+
+    var replaceRule: ReplaceRule {
+        ReplaceRule(
+            id: ruleID,
+            name: name,
+            group: group,
+            pattern: pattern,
+            replacement: replacement,
+            isRegex: isRegex,
+            scope: scope,
+            scopeTitle: scopeTitle,
+            scopeContent: scopeContent,
+            excludeScope: excludeScope,
+            timeoutMillisecond: timeoutMillisecond,
+            sortOrder: sortOrder,
+            enable: enable
+        )
+    }
+}
+
 // MARK: - 阅读进度记录
 
 @Model

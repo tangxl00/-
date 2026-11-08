@@ -175,6 +175,9 @@ struct SettingsView: View {
                         ForEach(ReaderTheme.allCases, id: \.self) { Text($0.displayName).tag($0) }
                     }
                 }
+                Section("净化与替换") {
+                    NavigationLink("替换规则") { ReplaceRulesView() }
+                }
                 Section("数据") {
                     LabeledContent("书源", value: "\(services.sourceCount) 个（启用 \(services.enabledSourceCount)）")
                     LabeledContent("书架", value: "\(books.count) 本")
@@ -288,5 +291,140 @@ struct LocalImportView: View {
         context.insert(record)
         try? context.save()
         dismiss()
+    }
+}
+
+
+// MARK: - 替换/净化规则管理（P0#2，v1.2.0：增删改 / 排序 / 启停）
+
+/// 规则列表：点击进编辑、开关启停、左滑删除、拖动（或 EditButton）排序。
+/// 首次启动由 AppServices.installDefaultReplaceRulesIfNeeded() 灌入 8 条默认水印规则。
+struct ReplaceRulesView: View {
+    @EnvironmentObject private var services: AppServices
+    @State private var rules: [ReplaceRule] = []
+    @State private var editingRule: ReplaceRule?
+    @State private var showNewRule = false
+
+    var body: some View {
+        List {
+            if rules.isEmpty {
+                Text("暂无规则")
+                    .foregroundStyle(.secondary)
+            }
+            ForEach(rules) { rule in
+                Button {
+                    editingRule = rule
+                } label: {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(rule.name.isEmpty ? "（未命名）" : rule.name)
+                                .font(.body)
+                                .foregroundStyle(.primary)
+                            Text(rule.isRegex ? "正则：\(rule.pattern)" : "字面量：\(rule.pattern)")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                                .lineLimit(1)
+                        }
+                        Spacer()
+                        Toggle("", isOn: Binding(
+                            get: { rule.enable },
+                            set: {
+                                services.setReplaceRuleEnabled(id: rule.id, enabled: $0)
+                                reload()
+                            }))
+                            .labelsHidden()
+                    }
+                }
+            }
+            .onDelete(perform: delete)
+            .onMove(perform: move)
+        }
+        .navigationTitle("替换规则（\(rules.count)）")
+        .toolbar {
+            ToolbarItem(placement: .navigationBarTrailing) { EditButton() }
+            ToolbarItem(placement: .navigationBarTrailing) {
+                Button { showNewRule = true } label: { Image(systemName: "plus") }
+            }
+        }
+        .sheet(item: $editingRule) { rule in
+            ReplaceRuleEditView(rule: rule) { updated in
+                services.saveReplaceRule(updated)
+                reload()
+            }
+        }
+        .sheet(isPresented: $showNewRule) {
+            ReplaceRuleEditView(rule: ReplaceRule()) { new in
+                services.saveReplaceRule(new)
+                reload()
+            }
+        }
+        .onAppear(perform: reload)
+    }
+
+    private func reload() {
+        rules = services.replaceRules()
+    }
+
+    private func delete(at offsets: IndexSet) {
+        let ids = offsets.map { rules[$0].id }
+        for id in ids { services.deleteReplaceRule(id: id) }
+        reload()
+    }
+
+    private func move(from source: IndexSet, to destination: Int) {
+        var arr = rules
+        arr.move(fromOffsets: source, toOffset: destination)
+        services.reorderReplaceRules(ids: arr.map(\.id))
+        reload()
+    }
+}
+
+/// 规则编辑：13 字段中的 11 个可编辑（id / sortOrder 由系统管理）。
+struct ReplaceRuleEditView: View {
+    @Environment(\.dismiss) private var dismiss
+    @State private var draft: ReplaceRule
+    let onSave: (ReplaceRule) -> Void
+
+    init(rule: ReplaceRule, onSave: @escaping (ReplaceRule) -> Void) {
+        _draft = State(initialValue: rule)
+        self.onSave = onSave
+    }
+
+    var body: some View {
+        NavigationStack {
+            Form {
+                Section("基本信息") {
+                    TextField("名称", text: $draft.name)
+                    Toggle("正则模式（关闭 = 字面量替换）", isOn: $draft.isRegex)
+                    Toggle("启用", isOn: $draft.enable)
+                }
+                Section("匹配与替换") {
+                    TextField("匹配（pattern）", text: $draft.pattern, axis: .vertical)
+                        .lineLimit(2...4)
+                    TextField("替换为（留空 = 删除匹配）", text: $draft.replacement, axis: .vertical)
+                        .lineLimit(2...4)
+                }
+                Section("作用范围") {
+                    Toggle("作用于章节标题", isOn: $draft.scopeTitle)
+                    Toggle("作用于正文", isOn: $draft.scopeContent)
+                    TextField("限定书名（正则，逗号分隔，空 = 全部书）", text: $draft.scope)
+                    TextField("排除书名（正则，逗号分隔）", text: $draft.excludeScope)
+                }
+                Section("高级") {
+                    Stepper("超时 \(draft.timeoutMillisecond) ms", value: $draft.timeoutMillisecond, in: 500...10000, step: 500)
+                }
+            }
+            .navigationTitle(draft.name.isEmpty ? "新建规则" : "编辑规则")
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("取消") { dismiss() } }
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("保存") {
+                        onSave(draft)
+                        dismiss()
+                    }
+                    .disabled(draft.pattern.isEmpty)
+                }
+            }
+        }
     }
 }

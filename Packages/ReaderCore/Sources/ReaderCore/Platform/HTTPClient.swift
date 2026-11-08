@@ -51,8 +51,11 @@ public struct HTTPRequest: Sendable {
     public var timeoutSeconds: Int
     public var retry: Int
     public var dnsIp: String?
-    /// 授权书源身份（用于限速分桶）
+    /// 授权书源身份（用于限速分桶 + P1-12 按源 Cookie 隔离）
     public var sourceKey: String?
+    /// P1-12（v1.2.0）：该请求的 Cookie 是否允许持久化（= 书源 enabledCookieJar）。
+    /// 无论真假，Cookie 都按 sourceKey 隔离存放；true 才会落盘。
+    public var cookieJarEnabled: Bool
 
     public init(
         url: String,
@@ -63,7 +66,8 @@ public struct HTTPRequest: Sendable {
         timeoutSeconds: Int = 60,
         retry: Int = 0,
         dnsIp: String? = nil,
-        sourceKey: String? = nil
+        sourceKey: String? = nil,
+        cookieJarEnabled: Bool = false
     ) {
         self.url = url
         self.method = method
@@ -74,13 +78,19 @@ public struct HTTPRequest: Sendable {
         self.retry = retry
         self.dnsIp = dnsIp
         self.sourceKey = sourceKey
+        self.cookieJarEnabled = cookieJarEnabled
     }
 
     /// 从 `AnalyzedUrl` 构造。
     /// - Note: `dnsIp` 在 P0 只登记不生效（需要自定义 DNS 解析，涉及底层 socket API，
     ///   在 iOS 上要靠 `URLSessionTaskDelegate` + `CFStream`，P0 不做）。
     ///   这里保留字段是为了让书源解析不丢信息，并在日志里提示「已忽略 dnsIp」。
-    public init(analyzed: AnalyzedUrl, sourceKey: String?, defaultHeaders: [String: String] = [:]) {
+    public init(
+        analyzed: AnalyzedUrl,
+        sourceKey: String?,
+        defaultHeaders: [String: String] = [:],
+        cookieJarEnabled: Bool = false
+    ) {
         var h = defaultHeaders
         if let extra = analyzed.option.headers {
             for (k, v) in extra { h[k] = v }
@@ -101,7 +111,8 @@ public struct HTTPRequest: Sendable {
             timeoutSeconds: 60,
             retry: max(0, analyzed.option.retry ?? 0),
             dnsIp: analyzed.option.dnsIp,
-            sourceKey: sourceKey
+            sourceKey: sourceKey,
+            cookieJarEnabled: cookieJarEnabled
         )
     }
 }
@@ -146,18 +157,31 @@ public protocol HTTPTransport: Sendable {
 public final class URLSessionTransport: HTTPTransport, @unchecked Sendable {
     private let session: URLSession
     private let cookieStorage: HTTPCookieStorage?
+    /// P1-12（v1.2.0）：按书源隔离的 Cookie 罐（默认 .shared；测试可注入独立实例）。
+    private let cookieJar: SourceCookieJar
 
+    /// P1-12 修复：cookieStorage 默认 nil——不再挂系统共享罐
+    /// （旧实现所有书源共用 HTTPCookieStorage.shared，A 站登录态会发给 B 站）。
+    /// 显式传入 cookieStorage 时保留旧行为（测试兼容）。
     public init(
         configuration: URLSessionConfiguration = .default,
-        cookieStorage: HTTPCookieStorage? = HTTPCookieStorage.shared,
-        protocolClasses: [AnyClass] = []
+        cookieStorage: HTTPCookieStorage? = nil,
+        protocolClasses: [AnyClass] = [],
+        cookieJar: SourceCookieJar = .shared
     ) {
         let cfg = configuration
         cfg.httpCookieStorage = cookieStorage
-        cfg.httpCookieAcceptPolicy = .always
-        cfg.httpShouldSetCookies = true
+        if cookieStorage != nil {
+            cfg.httpCookieAcceptPolicy = .always
+            cfg.httpShouldSetCookies = true
+        } else {
+            // 系统自动 Cookie 处理关闭，统一走 SourceCookieJar 手工注入
+            cfg.httpCookieAcceptPolicy = .never
+            cfg.httpShouldSetCookies = false
+        }
         if !protocolClasses.isEmpty { cfg.protocolClasses = protocolClasses }
         self.cookieStorage = cookieStorage
+        self.cookieJar = cookieJar
         self.session = URLSession(configuration: cfg)
     }
 
@@ -171,12 +195,29 @@ public final class URLSessionTransport: HTTPTransport, @unchecked Sendable {
         req.httpBody = request.body
         for (k, v) in request.headers { req.setValue(v, forHTTPHeaderField: k) }
 
+        // P1-12：按书源注入 Cookie（请求头已显式带 Cookie 时不覆盖）
+        if cookieStorage == nil, let sourceKey = request.sourceKey,
+           let header = cookieJar.cookieHeader(sourceKey: sourceKey, url: url),
+           req.value(forHTTPHeaderField: "Cookie") == nil {
+            req.setValue(header, forHTTPHeaderField: "Cookie")
+        }
+
         do {
             let (data, response) = try await session.data(for: req)
             guard let http = response as? HTTPURLResponse else { throw HTTPError.invalidResponse }
             var headers: [String: String] = [:]
             for (k, v) in http.allHeaderFields {
                 if let ks = k as? String, let vs = v as? String { headers[ks] = vs }
+            }
+            // P1-12：收集 Set-Cookie 到该书源的桶（enabledCookieJar=true 才落盘）
+            if cookieStorage == nil, let sourceKey = request.sourceKey {
+                let finalURL = http.url ?? url
+                cookieJar.store(
+                    responseHeaders: headers,
+                    url: finalURL,
+                    sourceKey: sourceKey,
+                    persist: request.cookieJarEnabled
+                )
             }
             return (http.statusCode, data, http.url?.absoluteString ?? request.url, headers)
         } catch let e as HTTPError {
@@ -280,9 +321,14 @@ public struct HTTPClient: Sendable {
     /// 便捷：按 URL+选项直接取。
     public func fetch(
         analyzed: AnalyzedUrl,
-        sourceKey: String?
+        sourceKey: String?,
+        cookieJarEnabled: Bool = false
     ) async throws -> HTTPResponse {
-        try await fetch(HTTPRequest(analyzed: analyzed, sourceKey: sourceKey))
+        try await fetch(HTTPRequest(
+            analyzed: analyzed,
+            sourceKey: sourceKey,
+            cookieJarEnabled: cookieJarEnabled
+        ))
     }
 
     static func isRetryableStatus(_ code: Int) -> Bool {

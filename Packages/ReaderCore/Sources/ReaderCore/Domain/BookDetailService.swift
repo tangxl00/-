@@ -210,14 +210,11 @@ public struct BookService: Sendable {
                         jsLib: source.jsLib
                     )
                 } else {
-                    // 其它（纯文本）→ 当作 HTML 片段处理，不覆盖页面
-                    ctx = EvalContext(
-                        source: EvalSource.detect(trimmedOut, baseURL: finalURL),
-                        baseURL: finalURL,
-                        variables: VariableStore(builtinVariables(book: nil, chapter: nil)),
-                        isFromBookInfo: true,
-                        jsLib: source.jsLib
-                    )
+                    // 其它（纯文本）→ 不是 HTML，无法构建 DOM。
+                    // P1-15（v1.2.0）修复：旧代码在这里用 EvalSource.detect(trimmedOut)
+                    // 覆盖了 ctx.source，与注释「不覆盖页面」相反，导致纯文本 init 输出
+                    // 会让后续 @css:/@XPath: 规则在无 DOM 的文本上求值、静默取空。
+                    // 现按注释语义：保留原页面源，纯文本输出不作为页面源使用。
                 }
             }
         }
@@ -542,7 +539,11 @@ public struct BookService: Sendable {
             evaluator: evaluator,
             ctx: EvalContext(source: EvalSource.text(""), jsLib: source.jsLib)
         )
-        let resp = try await client.fetch(analyzed: analyzed, sourceKey: source.bookSourceUrl)
+        let resp = try await client.fetch(
+            analyzed: analyzed,
+            sourceKey: source.bookSourceUrl,
+            cookieJarEnabled: source.enabledCookieJar
+        )
         return (resp.text, resp.finalURL)
     }
 
@@ -564,7 +565,11 @@ public struct BookService: Sendable {
                 jsLib: source.jsLib
             )
         )
-        let resp = try await client.fetch(analyzed: analyzed, sourceKey: source.bookSourceUrl)
+        let resp = try await client.fetch(
+            analyzed: analyzed,
+            sourceKey: source.bookSourceUrl,
+            cookieJarEnabled: source.enabledCookieJar
+        )
         return (resp.text, resp.finalURL)
     }
 

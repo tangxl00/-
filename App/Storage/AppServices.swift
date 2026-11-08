@@ -17,6 +17,10 @@ final class AppServices: ObservableObject {
 
     /// 全局 HTTP 客户端（带限速与重试；User-Agent 与 legado 观测值一致）
     let client: HTTPClient
+    /// P0#1（v1.2.0）：JS Tier B 真运行时。原实现 `RuleEvaluator()` 未传 jsRuntime，
+    /// 全仓也没有 JSCRuntime 实例，导致所有 `@js:` 书源必然抛 jsUnsupported、Tier B 能力为零。
+    /// 这里 App 启动即创建一个，并注入到 RuleEvaluator，搜索 / 详情 / 正文 / 导入扫描共用同一实例。
+    let jsRuntime: JSRuntime?
     let evaluator: RuleEvaluator
 
     @Published var sourceCount: Int = 0
@@ -25,7 +29,15 @@ final class AppServices: ObservableObject {
     init(container: ModelContainer) {
         self.container = container
         self.client = HTTPClient()
-        self.evaluator = RuleEvaluator()
+        #if canImport(JavaScriptCore)
+        let runtime: JSRuntime? = JSCRuntime()
+        #else
+        let runtime: JSRuntime? = nil
+        #endif
+        self.jsRuntime = runtime
+        self.evaluator = RuleEvaluator(jsRuntime: runtime)
+        // P0#2（v1.2.0）：首次启动灌入 8 条默认水印规则（幂等）
+        installDefaultReplaceRulesIfNeeded()
         refreshSourceCounts()
     }
 
@@ -145,5 +157,71 @@ final class AppServices: ObservableObject {
 
     func makeBookService() -> BookService {
         BookService(client: client, evaluator: evaluator)
+    }
+
+    // MARK: - P0#2 净化规则（SwiftData 落库 + 六步流水线接线）
+
+    /// 阅读链路用的净化输入：按 sortOrder 升序取启用规则。
+    /// 注：reSegment / 繁简转换两个设置项 v1.2.0 尚未接入设置界面，按默认（关闭）
+    /// 执行；用户替换规则（含 scope / excludeScope 书名过滤、超时熔断）已全量生效。
+    func purifyInput() -> ContentPurifyInput? {
+        let rules = replaceRules()
+        guard !rules.isEmpty else { return nil }
+        return ContentPurifyInput(rules: rules, options: ContentProcessOptions())
+    }
+
+    func replaceRules() -> [ReplaceRule] {
+        let context = ModelContext(container)
+        let records = (try? context.fetch(FetchDescriptor<ReplaceRuleRecord>())) ?? []
+        return records
+            .sorted { $0.sortOrder == $1.sortOrder ? $0.name < $1.name : $0.sortOrder < $1.sortOrder }
+            .map(\.replaceRule)
+    }
+
+    func saveReplaceRule(_ rule: ReplaceRule) {
+        let context = ModelContext(container)
+        let predicate = #Predicate<ReplaceRuleRecord> { $0.ruleID == rule.id }
+        let existing = (try? context.fetch(FetchDescriptor<ReplaceRuleRecord>(predicate: predicate)))?.first
+        let record = existing ?? ReplaceRuleRecord(rule: rule)
+        record.apply(rule)
+        if existing == nil { context.insert(record) }
+        try? context.save()
+    }
+
+    func deleteReplaceRule(id: String) {
+        let context = ModelContext(container)
+        let predicate = #Predicate<ReplaceRuleRecord> { $0.ruleID == id }
+        for r in (try? context.fetch(FetchDescriptor<ReplaceRuleRecord>(predicate: predicate))) ?? [] {
+            context.delete(r)
+        }
+        try? context.save()
+    }
+
+    /// 排序：按传入 id 顺序重写 sortOrder（拖拽 / 上下移都走这里）。
+    func reorderReplaceRules(ids: [String]) {
+        let context = ModelContext(container)
+        let records = (try? context.fetch(FetchDescriptor<ReplaceRuleRecord>())) ?? []
+        var byID: [String: ReplaceRuleRecord] = [:]
+        for r in records { byID[r.ruleID] = r }
+        for (order, id) in ids.enumerated() { byID[id]?.sortOrder = order }
+        try? context.save()
+    }
+
+    func setReplaceRuleEnabled(id: String, enabled: Bool) {
+        let context = ModelContext(container)
+        let predicate = #Predicate<ReplaceRuleRecord> { $0.ruleID == id }
+        if let r = (try? context.fetch(FetchDescriptor<ReplaceRuleRecord>(predicate: predicate)))?.first {
+            r.enable = enabled
+            try? context.save()
+        }
+    }
+
+    /// 首次启动灌入 8 条默认水印规则（幂等：已有规则则不动）。
+    func installDefaultReplaceRulesIfNeeded() {
+        let context = ModelContext(container)
+        let count = (try? context.fetchCount(FetchDescriptor<ReplaceRuleRecord>())) ?? 0
+        guard count == 0 else { return }
+        for r in DefaultPurifyRules.rules() { context.insert(ReplaceRuleRecord(rule: r)) }
+        try? context.save()
     }
 }

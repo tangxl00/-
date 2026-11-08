@@ -1,405 +1,2001 @@
-warning: 'swiftsoup': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
-    /home/gem/.aily/workdir/task_7705394701041437727/artifacts/TingDu/Packages/ReaderCore/.build/checkouts/SwiftSoup/Sources/InfotvOS.plist
-    /home/gem/.aily/workdir/task_7705394701041437727/artifacts/TingDu/Packages/ReaderCore/.build/checkouts/SwiftSoup/Sources/InfoWatchOS.plist
-    /home/gem/.aily/workdir/task_7705394701041437727/artifacts/TingDu/Packages/ReaderCore/.build/checkouts/SwiftSoup/Sources/Info.plist
-    /home/gem/.aily/workdir/task_7705394701041437727/artifacts/TingDu/Packages/ReaderCore/.build/checkouts/SwiftSoup/Sources/InfoMac.plist
-[0/1] Planning build
+Swift version 6.1.2 (swift-6.1.2-RELEASE)
+Target: x86_64-unknown-linux-gnu
+
+$ swift build --build-tests
+warning: 'swiftsoup-2.7.5': found 4 file(s) which are unhandled; explicitly declare them as resources or exclude from the target
+    /home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/.build/checkouts/SwiftSoup-2.7.5/Sources/InfotvOS.plist
+    /home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/.build/checkouts/SwiftSoup-2.7.5/Sources/InfoWatchOS.plist
+    /home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/.build/checkouts/SwiftSoup-2.7.5/Sources/Info.plist
+    /home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/.build/checkouts/SwiftSoup-2.7.5/Sources/InfoMac.plist
 Building for debugging...
-[0/3] Write swift-version--2360B5A3EC9720EA.txt
-[1/3] Write sources
-[3/4] Emitting module ReaderCore
-[4/5] Compiling ReaderCore RuleEvaluator.swift
-[5/7] Write Objects.LinkFileList
-[6/7] Linking ReaderCorePackageTests.xctest
-Build complete! (14.30s)
-Test Suite 'All tests' started at 2026-11-07 22:05:18.832
-Test Suite 'debug.xctest' started at 2026-11-07 22:05:18.834
-Test Suite 'BookMergeTests' started at 2026-11-07 22:05:18.834
-Test Case 'BookMergeTests.testBookKeyNormalize' started at 2026-11-07 22:05:18.834
+[0/17] Write swift-version-70D300EBA75F1776.txt
+[1/17] Copying PrivacyInfo.xcprivacy
+[2/17] Write sources
+[3/17] Copying gbk-table.bin
+[5/18] Emitting module SwiftSoup
+[6/38] Compiling SwiftSoup ArrayExt.swift
+[7/38] Compiling SwiftSoup Attribute.swift
+[8/38] Compiling SwiftSoup Attributes.swift
+[9/38] Compiling SwiftSoup BinarySearch.swift
+[10/38] Compiling SwiftSoup BooleanAttribute.swift
+[11/38] Compiling SwiftSoup CharacterExt.swift
+[12/38] Compiling SwiftSoup CharacterReader.swift
+[13/38] Compiling SwiftSoup Cleaner.swift
+[14/38] Compiling SwiftSoup Collector.swift
+[15/38] Compiling SwiftSoup CombiningEvaluator.swift
+[16/38] Compiling SwiftSoup Comment.swift
+[17/38] Compiling SwiftSoup Connection.swift
+[18/38] Compiling SwiftSoup CssSelector.swift
+[19/38] Compiling SwiftSoup DataNode.swift
+[20/38] Compiling SwiftSoup DataUtil.swift
+[21/38] Compiling SwiftSoup Document.swift
+[22/38] Compiling SwiftSoup DocumentType.swift
+[23/38] Compiling SwiftSoup Element.swift
+[24/38] Compiling SwiftSoup Elements.swift
+[25/38] Compiling SwiftSoup Entities.swift
+[26/58] Compiling SwiftSoup Evaluator.swift
+[27/58] Compiling SwiftSoup Exception.swift
+[28/58] Compiling SwiftSoup FormElement.swift
+[29/58] Compiling SwiftSoup HtmlTreeBuilder.swift
+[30/58] Compiling SwiftSoup HtmlTreeBuilderState.swift
+[31/58] Compiling SwiftSoup HttpStatusException.swift
+[32/58] Compiling SwiftSoup Mutex.swift
+[33/58] Compiling SwiftSoup Node.swift
+[34/58] Compiling SwiftSoup NodeTraversor.swift
+[35/58] Compiling SwiftSoup NodeVisitor.swift
+[36/58] Compiling SwiftSoup OrderedSet.swift
+[37/58] Compiling SwiftSoup ParseError.swift
+[38/58] Compiling SwiftSoup ParseErrorList.swift
+[39/58] Compiling SwiftSoup ParseSettings.swift
+[40/58] Compiling SwiftSoup Parser.swift
+[41/58] Compiling SwiftSoup Pattern.swift
+[42/58] Compiling SwiftSoup QueryParser.swift
+[43/58] Compiling SwiftSoup SerializationException.swift
+[44/58] Compiling SwiftSoup SimpleDictionary.swift
+[45/58] Compiling SwiftSoup StreamReader.swift
+[46/77] Compiling SwiftSoup String.swift
+[47/77] Compiling SwiftSoup StringBuilder.swift
+[48/77] Compiling SwiftSoup StringUtil.swift
+[49/77] Compiling SwiftSoup StructuralEvaluator.swift
+[50/77] Compiling SwiftSoup SwiftSoup.swift
+[51/77] Compiling SwiftSoup Tag.swift
+[52/77] Compiling SwiftSoup TextNode.swift
+[53/77] Compiling SwiftSoup Token.swift
+[54/77] Compiling SwiftSoup TokenQueue.swift
+[55/77] Compiling SwiftSoup Tokeniser.swift
+[56/77] Compiling SwiftSoup TokeniserState.swift
+[57/77] Compiling SwiftSoup TreeBuilder.swift
+[58/77] Compiling SwiftSoup UnfairLock.swift
+[59/77] Compiling SwiftSoup UnicodeScalar.swift
+[60/77] Compiling SwiftSoup Validate.swift
+[61/77] Compiling SwiftSoup Whitelist.swift
+[62/77] Compiling SwiftSoup XmlDeclaration.swift
+[63/77] Compiling SwiftSoup XmlTreeBuilder.swift
+[64/77] Compiling SwiftSoup resource_bundle_accessor.swift
+[65/78] Write sources
+[66/78] Wrapping AST for SwiftSoup for debugging
+[67/78] Write sources
+[69/79] Emitting module ReaderCore
+[70/96] Compiling ReaderCore HTMLEntities.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[71/96] Compiling ReaderCore BookDetailService.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[72/96] Compiling ReaderCore BookMerger.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[73/96] Compiling ReaderCore BookSourceImportService.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[74/96] Compiling ReaderCore ChineseConversionTable.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[75/96] Compiling ReaderCore ChineseConverter.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[76/96] Compiling ReaderCore ContentProcessor.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[77/96] Compiling ReaderCore Pagination.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[78/96] Compiling ReaderCore ReadingProgress.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[79/96] Compiling ReaderCore ReadingSettings.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[80/96] Compiling ReaderCore SearchModels.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[81/96] Compiling ReaderCore SearchService.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[82/96] Compiling ReaderCore EvalContext.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[83/96] Compiling ReaderCore JSCRuntime.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[84/96] Compiling ReaderCore JSRuntime.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[85/96] Compiling ReaderCore JSStaticScan.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[86/96] Compiling ReaderCore RuleEvaluator.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:256:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+254 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+255 |         }
+256 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+257 |         return try await appendTocPage(
+258 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:295:13: warning: variable 'result' was never mutated; consider changing to 'let' constant
+293 |             throw BookServiceError.missingRule("ruleToc.chapterList")
+294 |         }
+295 |         var result = TocResult(chapters: [], loadedPages: 0, hasMore: true, nextPageUrl: tocUrl)
+    |             `- warning: variable 'result' was never mutated; consider changing to 'let' constant
+296 |         return try await appendTocPage(
+297 |             pageUrl: tocUrl,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:320:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+318 |         while let u = url, pagesThisRound < maxPages {
+319 |             let (html, finalURL) = try await fetchOrThrow(url: u, source: source, book: book)
+320 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+321 |                 source: EvalSource.detect(html, baseURL: finalURL),
+322 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Domain/BookDetailService.swift:447:17: warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+445 |             lastFinalURL = finalURL
+446 | 
+447 |             var ctx = EvalContext(
+    |                 `- warning: variable 'ctx' was never mutated; consider changing to 'let' constant
+448 |                 source: EvalSource.detect(html, baseURL: finalURL),
+449 |                 baseURL: finalURL,
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Engine/EvalContext.swift:228:13: warning: variable 'c' was never mutated; consider changing to 'let' constant
+226 |     /// 合并书籍 / 章节到变量表，供 `{{book.name}}`、`{{chapter.title}}` 之类使用。
+227 |     public func materializingBuiltinVariables() -> EvalContext {
+228 |         var c = self
+    |             `- warning: variable 'c' was never mutated; consider changing to 'let' constant
+229 |         if let book {
+230 |             c.variables["book.name"] = book.name
+[87/113] Compiling ReaderCore RuleSegment.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[88/113] Compiling ReaderCore URLTemplate+Convenience.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[89/113] Compiling ReaderCore URLTemplate.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[90/113] Compiling ReaderCore BookSource.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[91/113] Compiling ReaderCore JsonValue.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[92/113] Compiling ReaderCore ReplaceRule.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[93/113] Compiling ReaderCore RuleModels.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[94/113] Compiling ReaderCore HTTPClient.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[95/113] Compiling ReaderCore RateLimiting.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[96/113] Compiling ReaderCore SourceCookieJar.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[97/113] Compiling ReaderCore TXTImporter.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[98/113] Compiling ReaderCore TextDecoding.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[99/113] Compiling ReaderCore HTMLDocument.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[100/113] Compiling ReaderCore JsonPath.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[101/113] Compiling ReaderCore SelectorBackend.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[102/113] Compiling ReaderCore XPathEngine.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[103/113] Compiling ReaderCore resource_bundle_accessor.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Platform/TXT/TXTImporter.swift:232:13: warning: variable 'pendingBodyStart' was written to, but never read
+230 |         var currentTitle: String? = nil
+231 |         var currentStart = 0
+232 |         var pendingBodyStart: Int? = nil
+    |             `- warning: variable 'pendingBodyStart' was written to, but never read
+233 | 
+234 |         while cursor < ns.length {
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/SelectorBackend.swift:258:13: warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+256 | 
+257 |         var current: [Element] = elements
+258 |         var currentTextNodes: [String] = []
+    |             `- warning: variable 'currentTextNodes' was never mutated; consider changing to 'let' constant
+259 |         var result: [String] = []
+260 |         var usedAction = false
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Sources/ReaderCore/Selectors/XPathEngine.swift:391:13: warning: variable 'text' was never mutated; consider changing to 'let' constant
+389 | 
+390 |     private static func parsePredicate(_ body: String, rule: String) throws -> XPathPredicate {
+391 |         var text = body.trimmingCharacters(in: .whitespacesAndNewlines)
+    |             `- warning: variable 'text' was never mutated; consider changing to 'let' constant
+392 |         guard !text.isEmpty else { throw XPathError.malformed(rule) }
+393 | 
+[105/115] Emitting module ReaderCoreTests
+[106/127] Compiling ReaderCoreTests BookMergeTests.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:160:33: warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+158 |         var toasts: [String] = []
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+    |                                 `- warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+161 |         bridge.logHandler = { logs.append($0) }
+162 |         _ = try bridge.call("toast", ["提示"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:161:31: warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+161 |         bridge.logHandler = { logs.append($0) }
+    |                               `- warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+162 |         _ = try bridge.call("toast", ["提示"])
+163 |         _ = try bridge.call("log", ["日志"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:10:13: warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+  8 |     private func fixedLines(text: String, charsPerLine: Int, height: Double) -> [TextLine] {
+  9 |         var lines: [TextLine] = []
+ 10 |         var start = text.startIndex
+    |             `- warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+ 11 |         let chars = Array(text)
+ 12 |         var offset = 0
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:55:13: warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 53 | 
+ 54 |     func testSinglePageWhenContentFits() {
+ 55 |         let text = "短文"
+    |             `- warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 56 |         let lines = [TextLine(start: 0, end: 2, height: 20)]
+ 57 |         let r = Paginator.paginate(lines: lines, pageHeight: 500, textLength: 2, signature: "s")
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/TXTImporterTests.swift:155:13: warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+153 | 
+154 |     func testImportFromDataGBK() throws {
+155 |         let gbkText = "第一章 起点\n这是GBK编码的正文。"
+    |             `- warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+156 |         let data = Data(Self.gbkSampleBytes)
+157 |         let r = try TXTImporter.import(data: data, bookName: "gbk书")
+[107/127] Compiling ReaderCoreTests ContentPurifyTests.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:160:33: warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+158 |         var toasts: [String] = []
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+    |                                 `- warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+161 |         bridge.logHandler = { logs.append($0) }
+162 |         _ = try bridge.call("toast", ["提示"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:161:31: warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+161 |         bridge.logHandler = { logs.append($0) }
+    |                               `- warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+162 |         _ = try bridge.call("toast", ["提示"])
+163 |         _ = try bridge.call("log", ["日志"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:10:13: warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+  8 |     private func fixedLines(text: String, charsPerLine: Int, height: Double) -> [TextLine] {
+  9 |         var lines: [TextLine] = []
+ 10 |         var start = text.startIndex
+    |             `- warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+ 11 |         let chars = Array(text)
+ 12 |         var offset = 0
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:55:13: warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 53 | 
+ 54 |     func testSinglePageWhenContentFits() {
+ 55 |         let text = "短文"
+    |             `- warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 56 |         let lines = [TextLine(start: 0, end: 2, height: 20)]
+ 57 |         let r = Paginator.paginate(lines: lines, pageHeight: 500, textLength: 2, signature: "s")
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/TXTImporterTests.swift:155:13: warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+153 | 
+154 |     func testImportFromDataGBK() throws {
+155 |         let gbkText = "第一章 起点\n这是GBK编码的正文。"
+    |             `- warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+156 |         let data = Data(Self.gbkSampleBytes)
+157 |         let r = try TXTImporter.import(data: data, bookName: "gbk书")
+[108/127] Compiling ReaderCoreTests ErrorHandlingTests.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:160:33: warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+158 |         var toasts: [String] = []
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+    |                                 `- warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+161 |         bridge.logHandler = { logs.append($0) }
+162 |         _ = try bridge.call("toast", ["提示"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:161:31: warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+161 |         bridge.logHandler = { logs.append($0) }
+    |                               `- warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+162 |         _ = try bridge.call("toast", ["提示"])
+163 |         _ = try bridge.call("log", ["日志"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:10:13: warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+  8 |     private func fixedLines(text: String, charsPerLine: Int, height: Double) -> [TextLine] {
+  9 |         var lines: [TextLine] = []
+ 10 |         var start = text.startIndex
+    |             `- warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+ 11 |         let chars = Array(text)
+ 12 |         var offset = 0
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:55:13: warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 53 | 
+ 54 |     func testSinglePageWhenContentFits() {
+ 55 |         let text = "短文"
+    |             `- warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 56 |         let lines = [TextLine(start: 0, end: 2, height: 20)]
+ 57 |         let r = Paginator.paginate(lines: lines, pageHeight: 500, textLength: 2, signature: "s")
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/TXTImporterTests.swift:155:13: warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+153 | 
+154 |     func testImportFromDataGBK() throws {
+155 |         let gbkText = "第一章 起点\n这是GBK编码的正文。"
+    |             `- warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+156 |         let data = Data(Self.gbkSampleBytes)
+157 |         let r = try TXTImporter.import(data: data, bookName: "gbk书")
+[109/127] Compiling ReaderCoreTests JSTierBTests.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:160:33: warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+158 |         var toasts: [String] = []
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+    |                                 `- warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+161 |         bridge.logHandler = { logs.append($0) }
+162 |         _ = try bridge.call("toast", ["提示"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:161:31: warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+161 |         bridge.logHandler = { logs.append($0) }
+    |                               `- warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+162 |         _ = try bridge.call("toast", ["提示"])
+163 |         _ = try bridge.call("log", ["日志"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:10:13: warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+  8 |     private func fixedLines(text: String, charsPerLine: Int, height: Double) -> [TextLine] {
+  9 |         var lines: [TextLine] = []
+ 10 |         var start = text.startIndex
+    |             `- warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+ 11 |         let chars = Array(text)
+ 12 |         var offset = 0
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:55:13: warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 53 | 
+ 54 |     func testSinglePageWhenContentFits() {
+ 55 |         let text = "短文"
+    |             `- warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 56 |         let lines = [TextLine(start: 0, end: 2, height: 20)]
+ 57 |         let r = Paginator.paginate(lines: lines, pageHeight: 500, textLength: 2, signature: "s")
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/TXTImporterTests.swift:155:13: warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+153 | 
+154 |     func testImportFromDataGBK() throws {
+155 |         let gbkText = "第一章 起点\n这是GBK编码的正文。"
+    |             `- warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+156 |         let data = Data(Self.gbkSampleBytes)
+157 |         let r = try TXTImporter.import(data: data, bookName: "gbk书")
+[110/127] Compiling ReaderCoreTests JsonPathTests.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:160:33: warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+158 |         var toasts: [String] = []
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+    |                                 `- warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+161 |         bridge.logHandler = { logs.append($0) }
+162 |         _ = try bridge.call("toast", ["提示"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:161:31: warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+161 |         bridge.logHandler = { logs.append($0) }
+    |                               `- warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+162 |         _ = try bridge.call("toast", ["提示"])
+163 |         _ = try bridge.call("log", ["日志"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:10:13: warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+  8 |     private func fixedLines(text: String, charsPerLine: Int, height: Double) -> [TextLine] {
+  9 |         var lines: [TextLine] = []
+ 10 |         var start = text.startIndex
+    |             `- warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+ 11 |         let chars = Array(text)
+ 12 |         var offset = 0
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:55:13: warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 53 | 
+ 54 |     func testSinglePageWhenContentFits() {
+ 55 |         let text = "短文"
+    |             `- warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 56 |         let lines = [TextLine(start: 0, end: 2, height: 20)]
+ 57 |         let r = Paginator.paginate(lines: lines, pageHeight: 500, textLength: 2, signature: "s")
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/TXTImporterTests.swift:155:13: warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+153 | 
+154 |     func testImportFromDataGBK() throws {
+155 |         let gbkText = "第一章 起点\n这是GBK编码的正文。"
+    |             `- warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+156 |         let data = Data(Self.gbkSampleBytes)
+157 |         let r = try TXTImporter.import(data: data, bookName: "gbk书")
+[111/127] Compiling ReaderCoreTests PaginationTests.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:160:33: warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+158 |         var toasts: [String] = []
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+    |                                 `- warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+161 |         bridge.logHandler = { logs.append($0) }
+162 |         _ = try bridge.call("toast", ["提示"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:161:31: warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+161 |         bridge.logHandler = { logs.append($0) }
+    |                               `- warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+162 |         _ = try bridge.call("toast", ["提示"])
+163 |         _ = try bridge.call("log", ["日志"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:10:13: warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+  8 |     private func fixedLines(text: String, charsPerLine: Int, height: Double) -> [TextLine] {
+  9 |         var lines: [TextLine] = []
+ 10 |         var start = text.startIndex
+    |             `- warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+ 11 |         let chars = Array(text)
+ 12 |         var offset = 0
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:55:13: warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 53 | 
+ 54 |     func testSinglePageWhenContentFits() {
+ 55 |         let text = "短文"
+    |             `- warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 56 |         let lines = [TextLine(start: 0, end: 2, height: 20)]
+ 57 |         let r = Paginator.paginate(lines: lines, pageHeight: 500, textLength: 2, signature: "s")
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/TXTImporterTests.swift:155:13: warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+153 | 
+154 |     func testImportFromDataGBK() throws {
+155 |         let gbkText = "第一章 起点\n这是GBK编码的正文。"
+    |             `- warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+156 |         let data = Data(Self.gbkSampleBytes)
+157 |         let r = try TXTImporter.import(data: data, bookName: "gbk书")
+[112/127] Compiling ReaderCoreTests ProgressTests.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:160:33: warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+158 |         var toasts: [String] = []
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+    |                                 `- warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+161 |         bridge.logHandler = { logs.append($0) }
+162 |         _ = try bridge.call("toast", ["提示"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:161:31: warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+161 |         bridge.logHandler = { logs.append($0) }
+    |                               `- warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+162 |         _ = try bridge.call("toast", ["提示"])
+163 |         _ = try bridge.call("log", ["日志"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:10:13: warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+  8 |     private func fixedLines(text: String, charsPerLine: Int, height: Double) -> [TextLine] {
+  9 |         var lines: [TextLine] = []
+ 10 |         var start = text.startIndex
+    |             `- warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+ 11 |         let chars = Array(text)
+ 12 |         var offset = 0
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:55:13: warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 53 | 
+ 54 |     func testSinglePageWhenContentFits() {
+ 55 |         let text = "短文"
+    |             `- warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 56 |         let lines = [TextLine(start: 0, end: 2, height: 20)]
+ 57 |         let r = Paginator.paginate(lines: lines, pageHeight: 500, textLength: 2, signature: "s")
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/TXTImporterTests.swift:155:13: warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+153 | 
+154 |     func testImportFromDataGBK() throws {
+155 |         let gbkText = "第一章 起点\n这是GBK编码的正文。"
+    |             `- warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+156 |         let data = Data(Self.gbkSampleBytes)
+157 |         let r = try TXTImporter.import(data: data, bookName: "gbk书")
+[113/127] Compiling ReaderCoreTests RuleEngineSupplementTests.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:160:33: warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+158 |         var toasts: [String] = []
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+    |                                 `- warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+161 |         bridge.logHandler = { logs.append($0) }
+162 |         _ = try bridge.call("toast", ["提示"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:161:31: warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+161 |         bridge.logHandler = { logs.append($0) }
+    |                               `- warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+162 |         _ = try bridge.call("toast", ["提示"])
+163 |         _ = try bridge.call("log", ["日志"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:10:13: warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+  8 |     private func fixedLines(text: String, charsPerLine: Int, height: Double) -> [TextLine] {
+  9 |         var lines: [TextLine] = []
+ 10 |         var start = text.startIndex
+    |             `- warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+ 11 |         let chars = Array(text)
+ 12 |         var offset = 0
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:55:13: warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 53 | 
+ 54 |     func testSinglePageWhenContentFits() {
+ 55 |         let text = "短文"
+    |             `- warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 56 |         let lines = [TextLine(start: 0, end: 2, height: 20)]
+ 57 |         let r = Paginator.paginate(lines: lines, pageHeight: 500, textLength: 2, signature: "s")
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/TXTImporterTests.swift:155:13: warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+153 | 
+154 |     func testImportFromDataGBK() throws {
+155 |         let gbkText = "第一章 起点\n这是GBK编码的正文。"
+    |             `- warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+156 |         let data = Data(Self.gbkSampleBytes)
+157 |         let r = try TXTImporter.import(data: data, bookName: "gbk书")
+[114/127] Compiling ReaderCoreTests RuleEngineTests.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:160:33: warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+158 |         var toasts: [String] = []
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+    |                                 `- warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+161 |         bridge.logHandler = { logs.append($0) }
+162 |         _ = try bridge.call("toast", ["提示"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:161:31: warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+161 |         bridge.logHandler = { logs.append($0) }
+    |                               `- warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+162 |         _ = try bridge.call("toast", ["提示"])
+163 |         _ = try bridge.call("log", ["日志"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:10:13: warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+  8 |     private func fixedLines(text: String, charsPerLine: Int, height: Double) -> [TextLine] {
+  9 |         var lines: [TextLine] = []
+ 10 |         var start = text.startIndex
+    |             `- warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+ 11 |         let chars = Array(text)
+ 12 |         var offset = 0
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:55:13: warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 53 | 
+ 54 |     func testSinglePageWhenContentFits() {
+ 55 |         let text = "短文"
+    |             `- warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 56 |         let lines = [TextLine(start: 0, end: 2, height: 20)]
+ 57 |         let r = Paginator.paginate(lines: lines, pageHeight: 500, textLength: 2, signature: "s")
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/TXTImporterTests.swift:155:13: warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+153 | 
+154 |     func testImportFromDataGBK() throws {
+155 |         let gbkText = "第一章 起点\n这是GBK编码的正文。"
+    |             `- warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+156 |         let data = Data(Self.gbkSampleBytes)
+157 |         let r = try TXTImporter.import(data: data, bookName: "gbk书")
+[115/127] Compiling ReaderCoreTests SettingsTests.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:160:33: warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+158 |         var toasts: [String] = []
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+    |                                 `- warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+161 |         bridge.logHandler = { logs.append($0) }
+162 |         _ = try bridge.call("toast", ["提示"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:161:31: warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+161 |         bridge.logHandler = { logs.append($0) }
+    |                               `- warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+162 |         _ = try bridge.call("toast", ["提示"])
+163 |         _ = try bridge.call("log", ["日志"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:10:13: warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+  8 |     private func fixedLines(text: String, charsPerLine: Int, height: Double) -> [TextLine] {
+  9 |         var lines: [TextLine] = []
+ 10 |         var start = text.startIndex
+    |             `- warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+ 11 |         let chars = Array(text)
+ 12 |         var offset = 0
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:55:13: warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 53 | 
+ 54 |     func testSinglePageWhenContentFits() {
+ 55 |         let text = "短文"
+    |             `- warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 56 |         let lines = [TextLine(start: 0, end: 2, height: 20)]
+ 57 |         let r = Paginator.paginate(lines: lines, pageHeight: 500, textLength: 2, signature: "s")
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/TXTImporterTests.swift:155:13: warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+153 | 
+154 |     func testImportFromDataGBK() throws {
+155 |         let gbkText = "第一章 起点\n这是GBK编码的正文。"
+    |             `- warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+156 |         let data = Data(Self.gbkSampleBytes)
+157 |         let r = try TXTImporter.import(data: data, bookName: "gbk书")
+[116/127] Compiling ReaderCoreTests TXTImporterTests.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:160:33: warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+158 |         var toasts: [String] = []
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+    |                                 `- warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+161 |         bridge.logHandler = { logs.append($0) }
+162 |         _ = try bridge.call("toast", ["提示"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:161:31: warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+161 |         bridge.logHandler = { logs.append($0) }
+    |                               `- warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+162 |         _ = try bridge.call("toast", ["提示"])
+163 |         _ = try bridge.call("log", ["日志"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:10:13: warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+  8 |     private func fixedLines(text: String, charsPerLine: Int, height: Double) -> [TextLine] {
+  9 |         var lines: [TextLine] = []
+ 10 |         var start = text.startIndex
+    |             `- warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+ 11 |         let chars = Array(text)
+ 12 |         var offset = 0
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:55:13: warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 53 | 
+ 54 |     func testSinglePageWhenContentFits() {
+ 55 |         let text = "短文"
+    |             `- warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 56 |         let lines = [TextLine(start: 0, end: 2, height: 20)]
+ 57 |         let r = Paginator.paginate(lines: lines, pageHeight: 500, textLength: 2, signature: "s")
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/TXTImporterTests.swift:155:13: warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+153 | 
+154 |     func testImportFromDataGBK() throws {
+155 |         let gbkText = "第一章 起点\n这是GBK编码的正文。"
+    |             `- warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+156 |         let data = Data(Self.gbkSampleBytes)
+157 |         let r = try TXTImporter.import(data: data, bookName: "gbk书")
+[117/127] Compiling ReaderCoreTests URLTemplateTests.swift
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:160:33: warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+158 |         var toasts: [String] = []
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+    |                                 `- warning: mutation of captured var 'toasts' in concurrently-executing code; this is an error in the Swift 6 language mode
+161 |         bridge.logHandler = { logs.append($0) }
+162 |         _ = try bridge.call("toast", ["提示"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/JSTierBTests.swift:161:31: warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+159 |         var logs: [String] = []
+160 |         bridge.toastHandler = { toasts.append($0) }
+161 |         bridge.logHandler = { logs.append($0) }
+    |                               `- warning: mutation of captured var 'logs' in concurrently-executing code; this is an error in the Swift 6 language mode
+162 |         _ = try bridge.call("toast", ["提示"])
+163 |         _ = try bridge.call("log", ["日志"])
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:10:13: warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+  8 |     private func fixedLines(text: String, charsPerLine: Int, height: Double) -> [TextLine] {
+  9 |         var lines: [TextLine] = []
+ 10 |         var start = text.startIndex
+    |             `- warning: initialization of variable 'start' was never used; consider replacing with assignment to '_' or removing it
+ 11 |         let chars = Array(text)
+ 12 |         var offset = 0
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/PaginationTests.swift:55:13: warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 53 | 
+ 54 |     func testSinglePageWhenContentFits() {
+ 55 |         let text = "短文"
+    |             `- warning: initialization of immutable value 'text' was never used; consider replacing with assignment to '_' or removing it
+ 56 |         let lines = [TextLine(start: 0, end: 2, height: 20)]
+ 57 |         let r = Paginator.paginate(lines: lines, pageHeight: 500, textLength: 2, signature: "s")
+/home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/Tests/ReaderCoreTests/TXTImporterTests.swift:155:13: warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+153 | 
+154 |     func testImportFromDataGBK() throws {
+155 |         let gbkText = "第一章 起点\n这是GBK编码的正文。"
+    |             `- warning: initialization of immutable value 'gbkText' was never used; consider replacing with assignment to '_' or removing it
+156 |         let data = Data(Self.gbkSampleBytes)
+157 |         let r = try TXTImporter.import(data: data, bookName: "gbk书")
+[118/128] Wrapping AST for ReaderCore for debugging
+[119/128] Wrapping AST for ReaderCoreTests for debugging
+[120/128] /home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/.build/x86_64-unknown-linux-gnu/debug/ReaderCorePackageDiscoveredTests.derived/all-discovered-tests.swift
+[121/128] Write sources
+[123/129] Emitting module ReaderCorePackageDiscoveredTests
+[124/131] Compiling ReaderCorePackageDiscoveredTests ReaderCoreTests.swift
+[125/131] Compiling ReaderCorePackageDiscoveredTests all-discovered-tests.swift
+[126/132] /home/gem/.aily/workdir/task_7705680154697190427/src/v110/Packages/ReaderCore/.build/x86_64-unknown-linux-gnu/debug/ReaderCorePackageTests.derived/runner.swift
+[127/132] Write sources
+[128/132] Wrapping AST for ReaderCorePackageDiscoveredTests for debugging
+[130/133] Emitting module ReaderCorePackageTests
+[131/134] Compiling ReaderCorePackageTests runner.swift
+[132/135] Wrapping AST for ReaderCorePackageTests for debugging
+[133/135] Write Objects.LinkFileList
+[134/135] Linking ReaderCorePackageTests.xctest
+Build complete! (124.11s)
+
+
+Test Suite 'All tests' started at 2026-11-08 22:22:22.963
+Test Suite 'debug.xctest' started at 2026-11-08 22:22:22.964
+Test Suite 'BookMergeTests' started at 2026-11-08 22:22:22.964
+Test Case 'BookMergeTests.testBookKeyNormalize' started at 2026-11-08 22:22:22.964
 Test Case 'BookMergeTests.testBookKeyNormalize' passed (0.001 seconds)
-Test Case 'BookMergeTests.testBookKeyRawFormat' started at 2026-11-07 22:05:18.836
+Test Case 'BookMergeTests.testBookKeyRawFormat' started at 2026-11-08 22:22:22.965
 Test Case 'BookMergeTests.testBookKeyRawFormat' passed (0.0 seconds)
-Test Case 'BookMergeTests.testBucketCategoryKindContains' started at 2026-11-07 22:05:18.836
+Test Case 'BookMergeTests.testBucketCategoryKindContains' started at 2026-11-08 22:22:22.965
 Test Case 'BookMergeTests.testBucketCategoryKindContains' passed (0.0 seconds)
-Test Case 'BookMergeTests.testBucketContainsNameContains' started at 2026-11-07 22:05:18.836
+Test Case 'BookMergeTests.testBucketContainsNameContains' started at 2026-11-08 22:22:22.965
 Test Case 'BookMergeTests.testBucketContainsNameContains' passed (0.0 seconds)
-Test Case 'BookMergeTests.testBucketEmptyKeywordIsOther' started at 2026-11-07 22:05:18.836
+Test Case 'BookMergeTests.testBucketEmptyKeywordIsOther' started at 2026-11-08 22:22:22.965
 Test Case 'BookMergeTests.testBucketEmptyKeywordIsOther' passed (0.0 seconds)
-Test Case 'BookMergeTests.testBucketExactAuthorMatch' started at 2026-11-07 22:05:18.836
+Test Case 'BookMergeTests.testBucketExactAuthorMatch' started at 2026-11-08 22:22:22.965
 Test Case 'BookMergeTests.testBucketExactAuthorMatch' passed (0.0 seconds)
-Test Case 'BookMergeTests.testBucketExactIsCaseAndSpaceInsensitive' started at 2026-11-07 22:05:18.836
+Test Case 'BookMergeTests.testBucketExactIsCaseAndSpaceInsensitive' started at 2026-11-08 22:22:22.966
 Test Case 'BookMergeTests.testBucketExactIsCaseAndSpaceInsensitive' passed (0.0 seconds)
-Test Case 'BookMergeTests.testBucketExactNameMatch' started at 2026-11-07 22:05:18.836
+Test Case 'BookMergeTests.testBucketExactNameMatch' started at 2026-11-08 22:22:22.966
 Test Case 'BookMergeTests.testBucketExactNameMatch' passed (0.0 seconds)
-Test Case 'BookMergeTests.testBucketIntroHitIsOther' started at 2026-11-07 22:05:18.837
+Test Case 'BookMergeTests.testBucketIntroHitIsOther' started at 2026-11-08 22:22:22.966
 Test Case 'BookMergeTests.testBucketIntroHitIsOther' passed (0.0 seconds)
-Test Case 'BookMergeTests.testBucketOther' started at 2026-11-07 22:05:18.837
+Test Case 'BookMergeTests.testBucketOther' started at 2026-11-08 22:22:22.966
 Test Case 'BookMergeTests.testBucketOther' passed (0.0 seconds)
-Test Case 'BookMergeTests.testMergeAuthorNormalizationMerges' started at 2026-11-07 22:05:18.837
+Test Case 'BookMergeTests.testMergeAuthorNormalizationMerges' started at 2026-11-08 22:22:22.966
 Test Case 'BookMergeTests.testMergeAuthorNormalizationMerges' passed (0.0 seconds)
-Test Case 'BookMergeTests.testMergeBestBucketAcrossSources' started at 2026-11-07 22:05:18.837
+Test Case 'BookMergeTests.testMergeBestBucketAcrossSources' started at 2026-11-08 22:22:22.966
 Test Case 'BookMergeTests.testMergeBestBucketAcrossSources' passed (0.0 seconds)
-Test Case 'BookMergeTests.testMergeDedupSameOriginSameBook' started at 2026-11-07 22:05:18.837
+Test Case 'BookMergeTests.testMergeDedupSameOriginSameBook' started at 2026-11-08 22:22:22.966
 Test Case 'BookMergeTests.testMergeDedupSameOriginSameBook' passed (0.0 seconds)
-Test Case 'BookMergeTests.testMergeDefaultCap1000' started at 2026-11-07 22:05:18.837
-Test Case 'BookMergeTests.testMergeDefaultCap1000' passed (0.032 seconds)
-Test Case 'BookMergeTests.testMergeDifferentAuthorsNotMerged' started at 2026-11-07 22:05:18.870
+Test Case 'BookMergeTests.testMergeDefaultCap1000' started at 2026-11-08 22:22:22.966
+Test Case 'BookMergeTests.testMergeDefaultCap1000' passed (0.035 seconds)
+Test Case 'BookMergeTests.testMergeDifferentAuthorsNotMerged' started at 2026-11-08 22:22:23.001
 Test Case 'BookMergeTests.testMergeDifferentAuthorsNotMerged' passed (0.0 seconds)
-Test Case 'BookMergeTests.testMergeEmptyInput' started at 2026-11-07 22:05:18.870
+Test Case 'BookMergeTests.testMergeEmptyInput' started at 2026-11-08 22:22:23.001
 Test Case 'BookMergeTests.testMergeEmptyInput' passed (0.0 seconds)
-Test Case 'BookMergeTests.testMergeGroupSameBookAcrossSources' started at 2026-11-07 22:05:18.870
+Test Case 'BookMergeTests.testMergeGroupSameBookAcrossSources' started at 2026-11-08 22:22:23.001
 Test Case 'BookMergeTests.testMergeGroupSameBookAcrossSources' passed (0.0 seconds)
-Test Case 'BookMergeTests.testMergeKeepsFirstAppearanceFields' started at 2026-11-07 22:05:18.870
+Test Case 'BookMergeTests.testMergeKeepsFirstAppearanceFields' started at 2026-11-08 22:22:23.001
 Test Case 'BookMergeTests.testMergeKeepsFirstAppearanceFields' passed (0.0 seconds)
-Test Case 'BookMergeTests.testMergePreservesAllSourceEntries' started at 2026-11-07 22:05:18.870
+Test Case 'BookMergeTests.testMergePreservesAllSourceEntries' started at 2026-11-08 22:22:23.001
 Test Case 'BookMergeTests.testMergePreservesAllSourceEntries' passed (0.0 seconds)
-Test Case 'BookMergeTests.testMergeSortBucketFirst' started at 2026-11-07 22:05:18.871
+Test Case 'BookMergeTests.testMergeSortBucketFirst' started at 2026-11-08 22:22:23.002
 Test Case 'BookMergeTests.testMergeSortBucketFirst' passed (0.0 seconds)
-Test Case 'BookMergeTests.testMergeSortMultiSourceBeforeSingle' started at 2026-11-07 22:05:18.871
+Test Case 'BookMergeTests.testMergeSortMultiSourceBeforeSingle' started at 2026-11-08 22:22:23.002
 Test Case 'BookMergeTests.testMergeSortMultiSourceBeforeSingle' passed (0.0 seconds)
-Test Case 'BookMergeTests.testMergeSortShorterNameFirstOnTie' started at 2026-11-07 22:05:18.871
+Test Case 'BookMergeTests.testMergeSortShorterNameFirstOnTie' started at 2026-11-08 22:22:23.002
 Test Case 'BookMergeTests.testMergeSortShorterNameFirstOnTie' passed (0.0 seconds)
-Test Case 'BookMergeTests.testMergeTruncationAndCount' started at 2026-11-07 22:05:18.871
+Test Case 'BookMergeTests.testMergeTruncationAndCount' started at 2026-11-08 22:22:23.002
 Test Case 'BookMergeTests.testMergeTruncationAndCount' passed (0.001 seconds)
-Test Case 'BookMergeTests.testMergedBookIdentifiableKey' started at 2026-11-07 22:05:18.872
+Test Case 'BookMergeTests.testMergedBookIdentifiableKey' started at 2026-11-08 22:22:23.003
 Test Case 'BookMergeTests.testMergedBookIdentifiableKey' passed (0.0 seconds)
-Test Case 'BookMergeTests.testSearchReportSummaryCounts' started at 2026-11-07 22:05:18.872
+Test Case 'BookMergeTests.testSearchReportSummaryCounts' started at 2026-11-08 22:22:23.003
 Test Case 'BookMergeTests.testSearchReportSummaryCounts' passed (0.0 seconds)
-Test Case 'BookMergeTests.testSearchReportSummaryTextMentionsFailure' started at 2026-11-07 22:05:18.872
+Test Case 'BookMergeTests.testSearchReportSummaryTextMentionsFailure' started at 2026-11-08 22:22:23.003
 Test Case 'BookMergeTests.testSearchReportSummaryTextMentionsFailure' passed (0.0 seconds)
-Test Case 'BookMergeTests.testUnsupportedSourceCountedSeparately' started at 2026-11-07 22:05:18.872
+Test Case 'BookMergeTests.testUnsupportedSourceCountedSeparately' started at 2026-11-08 22:22:23.003
 Test Case 'BookMergeTests.testUnsupportedSourceCountedSeparately' passed (0.0 seconds)
-Test Suite 'BookMergeTests' passed at 2026-11-07 22:05:18.873
-	 Executed 27 tests, with 0 failures (0 unexpected) in 0.038 (0.038) seconds
-Test Suite 'ErrorHandlingTests' started at 2026-11-07 22:05:18.873
-Test Case 'ErrorHandlingTests.testJsUnsupportedErrorHasMessage' started at 2026-11-07 22:05:18.873
+Test Suite 'BookMergeTests' passed at 2026-11-08 22:22:23.003
+	 Executed 27 tests, with 0 failures (0 unexpected) in 0.039 (0.039) seconds
+Test Suite 'ContentPurifyTests' started at 2026-11-08 22:22:23.003
+Test Case 'ContentPurifyTests.testChineseConversion' started at 2026-11-08 22:22:23.003
+Test Case 'ContentPurifyTests.testChineseConversion' passed (0.007 seconds)
+Test Case 'ContentPurifyTests.testDefaultRulesRemoveWatermarkWithoutLosingParagraphs' started at 2026-11-08 22:22:23.010
+Test Case 'ContentPurifyTests.testDefaultRulesRemoveWatermarkWithoutLosingParagraphs' passed (0.001 seconds)
+Test Case 'ContentPurifyTests.testExcludeScopeProtectsBook' started at 2026-11-08 22:22:23.010
+Test Case 'ContentPurifyTests.testExcludeScopeProtectsBook' passed (0.0 seconds)
+Test Case 'ContentPurifyTests.testPipelineOrderTrimBeforeReplaceIndentLast' started at 2026-11-08 22:22:23.011
+Test Case 'ContentPurifyTests.testPipelineOrderTrimBeforeReplaceIndentLast' passed (0.0 seconds)
+Test Case 'ContentPurifyTests.testReSegment' started at 2026-11-08 22:22:23.011
+Test Case 'ContentPurifyTests.testReSegment' passed (0.0 seconds)
+Test Case 'ContentPurifyTests.testScopeLimitsRuleToBook' started at 2026-11-08 22:22:23.011
+Test Case 'ContentPurifyTests.testScopeLimitsRuleToBook' passed (0.0 seconds)
+Test Case 'ContentPurifyTests.testSourceReplaceRegex' started at 2026-11-08 22:22:23.011
+Test Case 'ContentPurifyTests.testSourceReplaceRegex' passed (0.0 seconds)
+Test Case 'ContentPurifyTests.testSourceReplaceRegexFirstOnly' started at 2026-11-08 22:22:23.012
+Test Case 'ContentPurifyTests.testSourceReplaceRegexFirstOnly' passed (0.0 seconds)
+Test Case 'ContentPurifyTests.testStripLeadingTitle' started at 2026-11-08 22:22:23.012
+Test Case 'ContentPurifyTests.testStripLeadingTitle' passed (0.0 seconds)
+Test Case 'ContentPurifyTests.testTimeoutRuleDoesNotKillOthers' started at 2026-11-08 22:22:23.012
+Test Case 'ContentPurifyTests.testTimeoutRuleDoesNotKillOthers' passed (0.002 seconds)
+Test Suite 'ContentPurifyTests' passed at 2026-11-08 22:22:23.014
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.01 (0.01) seconds
+Test Suite 'ErrorHandlingTests' started at 2026-11-08 22:22:23.014
+Test Case 'ErrorHandlingTests.testJsUnsupportedErrorHasMessage' started at 2026-11-08 22:22:23.014
 Test Case 'ErrorHandlingTests.testJsUnsupportedErrorHasMessage' passed (0.0 seconds)
-Test Case 'ErrorHandlingTests.testRecursionLimitDescription' started at 2026-11-07 22:05:18.873
+Test Case 'ErrorHandlingTests.testRecursionLimitDescription' started at 2026-11-08 22:22:23.014
 Test Case 'ErrorHandlingTests.testRecursionLimitDescription' passed (0.0 seconds)
-Test Case 'ErrorHandlingTests.testSelectorFailedErrorHasMessage' started at 2026-11-07 22:05:18.873
+Test Case 'ErrorHandlingTests.testSelectorFailedErrorHasMessage' started at 2026-11-08 22:22:23.014
 Test Case 'ErrorHandlingTests.testSelectorFailedErrorHasMessage' passed (0.0 seconds)
-Test Suite 'ErrorHandlingTests' passed at 2026-11-07 22:05:18.873
+Test Suite 'ErrorHandlingTests' passed at 2026-11-08 22:22:23.014
 	 Executed 3 tests, with 0 failures (0 unexpected) in 0.0 (0.0) seconds
-Test Suite 'JsonPathTests' started at 2026-11-07 22:05:18.873
-Test Case 'JsonPathTests.testArrayRoot' started at 2026-11-07 22:05:18.873
-Test Case 'JsonPathTests.testArrayRoot' passed (0.001 seconds)
-Test Case 'JsonPathTests.testBoolText' started at 2026-11-07 22:05:18.873
+Test Suite 'JSTierBTests' started at 2026-11-08 22:22:23.014
+Test Case 'JSTierBTests.testBracesJSExpressionGoesThroughRuntime' started at 2026-11-08 22:22:23.014
+Test Case 'JSTierBTests.testBracesJSExpressionGoesThroughRuntime' passed (0.0 seconds)
+Test Case 'JSTierBTests.testBridgeCodecMethods' started at 2026-11-08 22:22:23.014
+Test Case 'JSTierBTests.testBridgeCodecMethods' passed (0.003 seconds)
+Test Case 'JSTierBTests.testBridgeMissingMethodThrowsWithName' started at 2026-11-08 22:22:23.017
+Test Case 'JSTierBTests.testBridgeMissingMethodThrowsWithName' passed (0.001 seconds)
+Test Case 'JSTierBTests.testBridgeTextMethods' started at 2026-11-08 22:22:23.018
+Test Case 'JSTierBTests.testBridgeTextMethods' passed (0.003 seconds)
+Test Case 'JSTierBTests.testBridgeToastAndLogDoNotCrash' started at 2026-11-08 22:22:23.021
+Test Case 'JSTierBTests.testBridgeToastAndLogDoNotCrash' passed (0.0 seconds)
+Test Case 'JSTierBTests.testImportPlainSourceStillOk' started at 2026-11-08 22:22:23.021
+Test Case 'JSTierBTests.testImportPlainSourceStillOk' passed (0.001 seconds)
+Test Case 'JSTierBTests.testImportReportsJsDegradedWithMissingMethods' started at 2026-11-08 22:22:23.022
+Test Case 'JSTierBTests.testImportReportsJsDegradedWithMissingMethods' passed (0.0 seconds)
+Test Case 'JSTierBTests.testInlineJsBlockSegmentGoesThroughRuntime' started at 2026-11-08 22:22:23.023
+Test Case 'JSTierBTests.testInlineJsBlockSegmentGoesThroughRuntime' passed (0.0 seconds)
+Test Case 'JSTierBTests.testJsLibInjectedIntoBindingsBeforeRules' started at 2026-11-08 22:22:23.023
+Test Case 'JSTierBTests.testJsLibInjectedIntoBindingsBeforeRules' passed (0.0 seconds)
+Test Case 'JSTierBTests.testJsTailSegmentGoesThroughRuntime' started at 2026-11-08 22:22:23.023
+Test Case 'JSTierBTests.testJsTailSegmentGoesThroughRuntime' passed (0.001 seconds)
+Test Case 'JSTierBTests.testNoRuntimeStillThrowsJsUnsupported' started at 2026-11-08 22:22:23.024
+Test Case 'JSTierBTests.testNoRuntimeStillThrowsJsUnsupported' passed (0.0 seconds)
+Test Case 'JSTierBTests.testStaticScanRegistryAndRuleScan' started at 2026-11-08 22:22:23.024
+Test Case 'JSTierBTests.testStaticScanRegistryAndRuleScan' passed (0.0 seconds)
+Test Case 'JSTierBTests.testSyncBridgeHardTimeoutDoesNotHang' started at 2026-11-08 22:22:23.024
+Test Case 'JSTierBTests.testSyncBridgeHardTimeoutDoesNotHang' passed (0.302 seconds)
+Test Case 'JSTierBTests.testURLTemplateJsOptionExecutesWithRuntime' started at 2026-11-08 22:22:23.326
+Test Case 'JSTierBTests.testURLTemplateJsOptionExecutesWithRuntime' passed (0.001 seconds)
+Test Suite 'JSTierBTests' passed at 2026-11-08 22:22:23.327
+	 Executed 14 tests, with 0 failures (0 unexpected) in 0.313 (0.313) seconds
+Test Suite 'JsonPathTests' started at 2026-11-08 22:22:23.327
+Test Case 'JsonPathTests.testArrayRoot' started at 2026-11-08 22:22:23.327
+Test Case 'JsonPathTests.testArrayRoot' passed (0.0 seconds)
+Test Case 'JsonPathTests.testBoolText' started at 2026-11-08 22:22:23.327
 Test Case 'JsonPathTests.testBoolText' passed (0.0 seconds)
-Test Case 'JsonPathTests.testChildAccess' started at 2026-11-07 22:05:18.873
-Test Case 'JsonPathTests.testChildAccess' passed (0.0 seconds)
-Test Case 'JsonPathTests.testEscapedUnicodeAndChineseKeys' started at 2026-11-07 22:05:18.874
+Test Case 'JsonPathTests.testChildAccess' started at 2026-11-08 22:22:23.327
+Test Case 'JsonPathTests.testChildAccess' passed (0.001 seconds)
+Test Case 'JsonPathTests.testEscapedUnicodeAndChineseKeys' started at 2026-11-08 22:22:23.328
 Test Case 'JsonPathTests.testEscapedUnicodeAndChineseKeys' passed (0.0 seconds)
-Test Case 'JsonPathTests.testEvalContextJSONDetection' started at 2026-11-07 22:05:18.874
+Test Case 'JsonPathTests.testEvalContextJSONDetection' started at 2026-11-08 22:22:23.328
 Test Case 'JsonPathTests.testEvalContextJSONDetection' passed (0.0 seconds)
-Test Case 'JsonPathTests.testEvalContextTextDetection' started at 2026-11-07 22:05:18.874
-Test Case 'JsonPathTests.testEvalContextTextDetection' passed (0.001 seconds)
-Test Case 'JsonPathTests.testFilterComparison' started at 2026-11-07 22:05:18.875
+Test Case 'JsonPathTests.testEvalContextTextDetection' started at 2026-11-08 22:22:23.328
+Test Case 'JsonPathTests.testEvalContextTextDetection' passed (0.0 seconds)
+Test Case 'JsonPathTests.testFilterComparison' started at 2026-11-08 22:22:23.328
 Test Case 'JsonPathTests.testFilterComparison' passed (0.0 seconds)
-Test Case 'JsonPathTests.testFilterEquality' started at 2026-11-07 22:05:18.875
+Test Case 'JsonPathTests.testFilterEquality' started at 2026-11-08 22:22:23.329
 Test Case 'JsonPathTests.testFilterEquality' passed (0.0 seconds)
-Test Case 'JsonPathTests.testFilterExists' started at 2026-11-07 22:05:18.876
+Test Case 'JsonPathTests.testFilterExists' started at 2026-11-08 22:22:23.329
 Test Case 'JsonPathTests.testFilterExists' passed (0.0 seconds)
-Test Case 'JsonPathTests.testFilterRegexOperator' started at 2026-11-07 22:05:18.876
-Test Case 'JsonPathTests.testFilterRegexOperator' passed (0.002 seconds)
-Test Case 'JsonPathTests.testFirstStringMultiValueTakesFirst' started at 2026-11-07 22:05:18.878
+Test Case 'JsonPathTests.testFilterRegexOperator' started at 2026-11-08 22:22:23.329
+Test Case 'JsonPathTests.testFilterRegexOperator' passed (0.0 seconds)
+Test Case 'JsonPathTests.testFirstStringMultiValueTakesFirst' started at 2026-11-08 22:22:23.329
 Test Case 'JsonPathTests.testFirstStringMultiValueTakesFirst' passed (0.0 seconds)
-Test Case 'JsonPathTests.testFirstStringNumberFormatting' started at 2026-11-07 22:05:18.878
+Test Case 'JsonPathTests.testFirstStringNumberFormatting' started at 2026-11-08 22:22:23.330
 Test Case 'JsonPathTests.testFirstStringNumberFormatting' passed (0.0 seconds)
-Test Case 'JsonPathTests.testFirstStringOnObjectYieldsCompactJSON' started at 2026-11-07 22:05:18.878
+Test Case 'JsonPathTests.testFirstStringOnObjectYieldsCompactJSON' started at 2026-11-08 22:22:23.330
 Test Case 'JsonPathTests.testFirstStringOnObjectYieldsCompactJSON' passed (0.0 seconds)
-Test Case 'JsonPathTests.testFlattened' started at 2026-11-07 22:05:18.879
+Test Case 'JsonPathTests.testFlattened' started at 2026-11-08 22:22:23.330
 Test Case 'JsonPathTests.testFlattened' passed (0.0 seconds)
-Test Case 'JsonPathTests.testFromBridge' started at 2026-11-07 22:05:18.879
+Test Case 'JsonPathTests.testFromBridge' started at 2026-11-08 22:22:23.330
 Test Case 'JsonPathTests.testFromBridge' passed (0.0 seconds)
-Test Case 'JsonPathTests.testIndexNegativeAndOutOfBounds' started at 2026-11-07 22:05:18.879
+Test Case 'JsonPathTests.testIndexNegativeAndOutOfBounds' started at 2026-11-08 22:22:23.330
 Test Case 'JsonPathTests.testIndexNegativeAndOutOfBounds' passed (0.0 seconds)
-Test Case 'JsonPathTests.testIndexOnObjectIsEmpty' started at 2026-11-07 22:05:18.879
+Test Case 'JsonPathTests.testIndexOnObjectIsEmpty' started at 2026-11-08 22:22:23.330
 Test Case 'JsonPathTests.testIndexOnObjectIsEmpty' passed (0.0 seconds)
-Test Case 'JsonPathTests.testJsonModeRuleOnJSONSource' started at 2026-11-07 22:05:18.879
-Test Case 'JsonPathTests.testJsonModeRuleOnJSONSource' passed (0.001 seconds)
-Test Case 'JsonPathTests.testMissingPathReturnsEmptyNotCrash' started at 2026-11-07 22:05:18.880
+Test Case 'JsonPathTests.testJsonModeRuleOnJSONSource' started at 2026-11-08 22:22:23.330
+Test Case 'JsonPathTests.testJsonModeRuleOnJSONSource' passed (0.0 seconds)
+Test Case 'JsonPathTests.testMissingPathReturnsEmptyNotCrash' started at 2026-11-08 22:22:23.331
 Test Case 'JsonPathTests.testMissingPathReturnsEmptyNotCrash' passed (0.0 seconds)
-Test Case 'JsonPathTests.testMultipleIndexSelect' started at 2026-11-07 22:05:18.881
+Test Case 'JsonPathTests.testMultipleIndexSelect' started at 2026-11-08 22:22:23.331
 Test Case 'JsonPathTests.testMultipleIndexSelect' passed (0.0 seconds)
-Test Case 'JsonPathTests.testNestedChildAccess' started at 2026-11-07 22:05:18.881
+Test Case 'JsonPathTests.testNestedChildAccess' started at 2026-11-08 22:22:23.331
 Test Case 'JsonPathTests.testNestedChildAccess' passed (0.0 seconds)
-Test Case 'JsonPathTests.testParseFragmentsAllowed' started at 2026-11-07 22:05:18.881
+Test Case 'JsonPathTests.testParseFragmentsAllowed' started at 2026-11-08 22:22:23.332
 Test Case 'JsonPathTests.testParseFragmentsAllowed' passed (0.0 seconds)
-Test Case 'JsonPathTests.testParseInvalidReturnsNil' started at 2026-11-07 22:05:18.881
+Test Case 'JsonPathTests.testParseInvalidReturnsNil' started at 2026-11-08 22:22:23.332
 Test Case 'JsonPathTests.testParseInvalidReturnsNil' passed (0.0 seconds)
-Test Case 'JsonPathTests.testPathWhitespaceTrimmed' started at 2026-11-07 22:05:18.881
+Test Case 'JsonPathTests.testPathWhitespaceTrimmed' started at 2026-11-08 22:22:23.332
 Test Case 'JsonPathTests.testPathWhitespaceTrimmed' passed (0.0 seconds)
-Test Case 'JsonPathTests.testQueryOnScalarAndNull' started at 2026-11-07 22:05:18.882
+Test Case 'JsonPathTests.testQueryOnScalarAndNull' started at 2026-11-08 22:22:23.332
 Test Case 'JsonPathTests.testQueryOnScalarAndNull' passed (0.0 seconds)
-Test Case 'JsonPathTests.testRecursiveDescent' started at 2026-11-07 22:05:18.882
+Test Case 'JsonPathTests.testRecursiveDescent' started at 2026-11-08 22:22:23.332
 Test Case 'JsonPathTests.testRecursiveDescent' passed (0.0 seconds)
-Test Case 'JsonPathTests.testRecursiveWildcard' started at 2026-11-07 22:05:18.882
+Test Case 'JsonPathTests.testRecursiveWildcard' started at 2026-11-08 22:22:23.332
 Test Case 'JsonPathTests.testRecursiveWildcard' passed (0.0 seconds)
-Test Case 'JsonPathTests.testSliceNegativeBounds' started at 2026-11-07 22:05:18.882
+Test Case 'JsonPathTests.testSliceNegativeBounds' started at 2026-11-08 22:22:23.333
 Test Case 'JsonPathTests.testSliceNegativeBounds' passed (0.0 seconds)
-Test Case 'JsonPathTests.testSliceSyntax' started at 2026-11-07 22:05:18.882
+Test Case 'JsonPathTests.testSliceSyntax' started at 2026-11-08 22:22:23.333
 Test Case 'JsonPathTests.testSliceSyntax' passed (0.0 seconds)
-Test Case 'JsonPathTests.testWildcardOnArray' started at 2026-11-07 22:05:18.883
+Test Case 'JsonPathTests.testWildcardOnArray' started at 2026-11-08 22:22:23.333
 Test Case 'JsonPathTests.testWildcardOnArray' passed (0.0 seconds)
-Test Case 'JsonPathTests.testWildcardOnObjectGivesSortedValues' started at 2026-11-07 22:05:18.883
+Test Case 'JsonPathTests.testWildcardOnObjectGivesSortedValues' started at 2026-11-08 22:22:23.333
 Test Case 'JsonPathTests.testWildcardOnObjectGivesSortedValues' passed (0.0 seconds)
-Test Suite 'JsonPathTests' passed at 2026-11-07 22:05:18.883
-	 Executed 31 tests, with 0 failures (0 unexpected) in 0.01 (0.01) seconds
-Test Suite 'PaginationTests' started at 2026-11-07 22:05:18.883
-Test Case 'PaginationTests.testAdjacentPagesNoGapNoOverlap' started at 2026-11-07 22:05:18.883
+Test Suite 'JsonPathTests' passed at 2026-11-08 22:22:23.333
+	 Executed 31 tests, with 0 failures (0 unexpected) in 0.006 (0.006) seconds
+Test Suite 'PaginationTests' started at 2026-11-08 22:22:23.333
+Test Case 'PaginationTests.testAdjacentPagesNoGapNoOverlap' started at 2026-11-08 22:22:23.333
 Test Case 'PaginationTests.testAdjacentPagesNoGapNoOverlap' passed (0.0 seconds)
-Test Case 'PaginationTests.testApproximateMeasurerASCIIHalfWidth' started at 2026-11-07 22:05:18.884
+Test Case 'PaginationTests.testApproximateMeasurerASCIIHalfWidth' started at 2026-11-08 22:22:23.334
 Test Case 'PaginationTests.testApproximateMeasurerASCIIHalfWidth' passed (0.0 seconds)
-Test Case 'PaginationTests.testApproximateMeasurerRespectsNewlines' started at 2026-11-07 22:05:18.884
+Test Case 'PaginationTests.testApproximateMeasurerRespectsNewlines' started at 2026-11-08 22:22:23.334
 Test Case 'PaginationTests.testApproximateMeasurerRespectsNewlines' passed (0.0 seconds)
-Test Case 'PaginationTests.testContiguousAcrossPages' started at 2026-11-07 22:05:18.884
+Test Case 'PaginationTests.testContiguousAcrossPages' started at 2026-11-08 22:22:23.334
 Test Case 'PaginationTests.testContiguousAcrossPages' passed (0.0 seconds)
-Test Case 'PaginationTests.testConveniencePaginateWithApproximateMeasurer' started at 2026-11-07 22:05:18.884
+Test Case 'PaginationTests.testConveniencePaginateWithApproximateMeasurer' started at 2026-11-08 22:22:23.334
 Test Case 'PaginationTests.testConveniencePaginateWithApproximateMeasurer' passed (0.0 seconds)
-Test Case 'PaginationTests.testEmptyLinesYieldsNoPages' started at 2026-11-07 22:05:18.884
+Test Case 'PaginationTests.testEmptyLinesYieldsNoPages' started at 2026-11-08 22:22:23.334
 Test Case 'PaginationTests.testEmptyLinesYieldsNoPages' passed (0.0 seconds)
-Test Case 'PaginationTests.testFirstPageStartsAtZeroAndLastEndsAtTextLength' started at 2026-11-07 22:05:18.884
+Test Case 'PaginationTests.testFirstPageStartsAtZeroAndLastEndsAtTextLength' started at 2026-11-08 22:22:23.334
 Test Case 'PaginationTests.testFirstPageStartsAtZeroAndLastEndsAtTextLength' passed (0.0 seconds)
-Test Case 'PaginationTests.testLayoutSignatureChangeRepaints' started at 2026-11-07 22:05:18.884
+Test Case 'PaginationTests.testLayoutSignatureChangeRepaints' started at 2026-11-08 22:22:23.334
 Test Case 'PaginationTests.testLayoutSignatureChangeRepaints' passed (0.0 seconds)
-Test Case 'PaginationTests.testOversizedLineStillGetsAPage' started at 2026-11-07 22:05:18.884
+Test Case 'PaginationTests.testOversizedLineStillGetsAPage' started at 2026-11-08 22:22:23.334
 Test Case 'PaginationTests.testOversizedLineStillGetsAPage' passed (0.0 seconds)
-Test Case 'PaginationTests.testPageIndexForOffset' started at 2026-11-07 22:05:18.884
+Test Case 'PaginationTests.testPageIndexForOffset' started at 2026-11-08 22:22:23.334
 Test Case 'PaginationTests.testPageIndexForOffset' passed (0.0 seconds)
-Test Case 'PaginationTests.testPageRangeLengthAndEquality' started at 2026-11-07 22:05:18.884
+Test Case 'PaginationTests.testPageRangeLengthAndEquality' started at 2026-11-08 22:22:23.334
 Test Case 'PaginationTests.testPageRangeLengthAndEquality' passed (0.0 seconds)
-Test Case 'PaginationTests.testPaginationResultIsContiguousDetectsBroken' started at 2026-11-07 22:05:18.884
+Test Case 'PaginationTests.testPaginationResultIsContiguousDetectsBroken' started at 2026-11-08 22:22:23.334
 Test Case 'PaginationTests.testPaginationResultIsContiguousDetectsBroken' passed (0.0 seconds)
-Test Case 'PaginationTests.testSinglePageWhenContentFits' started at 2026-11-07 22:05:18.884
+Test Case 'PaginationTests.testSinglePageWhenContentFits' started at 2026-11-08 22:22:23.334
 Test Case 'PaginationTests.testSinglePageWhenContentFits' passed (0.0 seconds)
-Test Suite 'PaginationTests' passed at 2026-11-07 22:05:18.884
+Test Suite 'PaginationTests' passed at 2026-11-08 22:22:23.334
 	 Executed 13 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
-Test Suite 'ProgressTests' started at 2026-11-07 22:05:18.884
-Test Case 'ProgressTests.testCharacterOffsetInvariantAcrossLayoutChange' started at 2026-11-07 22:05:18.884
+Test Suite 'ProgressTests' started at 2026-11-08 22:22:23.334
+Test Case 'ProgressTests.testCharacterOffsetInvariantAcrossLayoutChange' started at 2026-11-08 22:22:23.334
 Test Case 'ProgressTests.testCharacterOffsetInvariantAcrossLayoutChange' passed (0.0 seconds)
-Test Case 'ProgressTests.testClampOffset' started at 2026-11-07 22:05:18.884
+Test Case 'ProgressTests.testClampOffset' started at 2026-11-08 22:22:23.334
 Test Case 'ProgressTests.testClampOffset' passed (0.0 seconds)
-Test Case 'ProgressTests.testCoordinatorIsolatedPerBook' started at 2026-11-07 22:05:18.884
+Test Case 'ProgressTests.testCoordinatorIsolatedPerBook' started at 2026-11-08 22:22:23.334
 Test Case 'ProgressTests.testCoordinatorIsolatedPerBook' passed (0.0 seconds)
-Test Case 'ProgressTests.testExitFlushPersistsLatestOffset' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testExitFlushPersistsLatestOffset' started at 2026-11-08 22:22:23.334
 Test Case 'ProgressTests.testExitFlushPersistsLatestOffset' passed (0.0 seconds)
-Test Case 'ProgressTests.testFlushWithoutPendingIsNoop' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testFlushWithoutPendingIsNoop' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testFlushWithoutPendingIsNoop' passed (0.0 seconds)
-Test Case 'ProgressTests.testFractionBounded01' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testFractionBounded01' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testFractionBounded01' passed (0.0 seconds)
-Test Case 'ProgressTests.testFractionMonotonicAcrossChapters' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testFractionMonotonicAcrossChapters' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testFractionMonotonicAcrossChapters' passed (0.0 seconds)
-Test Case 'ProgressTests.testInMemoryStoreCRUD' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testInMemoryStoreCRUD' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testInMemoryStoreCRUD' passed (0.0 seconds)
-Test Case 'ProgressTests.testOpenTargetClampsOutOfRange' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testOpenTargetClampsOutOfRange' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testOpenTargetClampsOutOfRange' passed (0.0 seconds)
-Test Case 'ProgressTests.testOpenTargetNilProgressStartsAtZero' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testOpenTargetNilProgressStartsAtZero' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testOpenTargetNilProgressStartsAtZero' passed (0.0 seconds)
-Test Case 'ProgressTests.testOpenTargetWithProgress' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testOpenTargetWithProgress' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testOpenTargetWithProgress' passed (0.0 seconds)
-Test Case 'ProgressTests.testOpenTargetZeroChapterCountFallsToZero' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testOpenTargetZeroChapterCountFallsToZero' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testOpenTargetZeroChapterCountFallsToZero' passed (0.0 seconds)
-Test Case 'ProgressTests.testPreviousAndNextChapter' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testPreviousAndNextChapter' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testPreviousAndNextChapter' passed (0.0 seconds)
-Test Case 'ProgressTests.testProgressCodableRoundTrip' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testProgressCodableRoundTrip' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testProgressCodableRoundTrip' passed (0.0 seconds)
-Test Case 'ProgressTests.testProgressModelFields' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testProgressModelFields' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testProgressModelFields' passed (0.0 seconds)
-Test Case 'ProgressTests.testRestoreNilWhenNoHistory' started at 2026-11-07 22:05:18.885
+Test Case 'ProgressTests.testRestoreNilWhenNoHistory' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testRestoreNilWhenNoHistory' passed (0.0 seconds)
-Test Case 'ProgressTests.testRestoreReturnsSavedLocator' started at 2026-11-07 22:05:18.886
+Test Case 'ProgressTests.testRestoreReturnsSavedLocator' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testRestoreReturnsSavedLocator' passed (0.0 seconds)
-Test Case 'ProgressTests.testSnapshotReflectsLatestState' started at 2026-11-07 22:05:18.886
+Test Case 'ProgressTests.testSnapshotReflectsLatestState' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testSnapshotReflectsLatestState' passed (0.0 seconds)
-Test Case 'ProgressTests.testStoreSaveOverwritesSameBook' started at 2026-11-07 22:05:18.886
+Test Case 'ProgressTests.testStoreSaveOverwritesSameBook' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testStoreSaveOverwritesSameBook' passed (0.0 seconds)
-Test Case 'ProgressTests.testSwitchChapterClampsNegative' started at 2026-11-07 22:05:18.886
+Test Case 'ProgressTests.testSwitchChapterClampsNegative' started at 2026-11-08 22:22:23.335
 Test Case 'ProgressTests.testSwitchChapterClampsNegative' passed (0.0 seconds)
-Test Case 'ProgressTests.testSwitchChapterClearsPendingOffset' started at 2026-11-07 22:05:18.886
+Test Case 'ProgressTests.testSwitchChapterClearsPendingOffset' started at 2026-11-08 22:22:23.336
 Test Case 'ProgressTests.testSwitchChapterClearsPendingOffset' passed (0.0 seconds)
-Test Case 'ProgressTests.testSwitchChapterSavesImmediately' started at 2026-11-07 22:05:18.886
+Test Case 'ProgressTests.testSwitchChapterSavesImmediately' started at 2026-11-08 22:22:23.336
 Test Case 'ProgressTests.testSwitchChapterSavesImmediately' passed (0.0 seconds)
-Test Case 'ProgressTests.testThrottleIntervalDefaultIsOneSecond' started at 2026-11-07 22:05:18.886
+Test Case 'ProgressTests.testThrottleIntervalDefaultIsOneSecond' started at 2026-11-08 22:22:23.336
 Test Case 'ProgressTests.testThrottleIntervalDefaultIsOneSecond' passed (0.0 seconds)
-Test Case 'ProgressTests.testUpdateOffsetAfterIntervalWritesDirectly' started at 2026-11-07 22:05:18.886
+Test Case 'ProgressTests.testUpdateOffsetAfterIntervalWritesDirectly' started at 2026-11-08 22:22:23.336
 Test Case 'ProgressTests.testUpdateOffsetAfterIntervalWritesDirectly' passed (0.0 seconds)
-Test Case 'ProgressTests.testUpdateOffsetClampsNegative' started at 2026-11-07 22:05:18.886
+Test Case 'ProgressTests.testUpdateOffsetClampsNegative' started at 2026-11-08 22:22:23.336
 Test Case 'ProgressTests.testUpdateOffsetClampsNegative' passed (0.0 seconds)
-Test Case 'ProgressTests.testUpdateOffsetThrottled' started at 2026-11-07 22:05:18.886
+Test Case 'ProgressTests.testUpdateOffsetThrottled' started at 2026-11-08 22:22:23.336
 Test Case 'ProgressTests.testUpdateOffsetThrottled' passed (0.0 seconds)
-Test Suite 'ProgressTests' passed at 2026-11-07 22:05:18.886
+Test Suite 'ProgressTests' passed at 2026-11-08 22:22:23.336
 	 Executed 26 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
-Test Suite 'RuleEngineTests' started at 2026-11-07 22:05:18.886
-Test Case 'RuleEngineTests.testAndOperatorInListContext' started at 2026-11-07 22:05:18.886
-Test Case 'RuleEngineTests.testAndOperatorInListContext' passed (0.001 seconds)
-Test Case 'RuleEngineTests.testBracesUnknownContentThrowsInsteadOfSilentEmpty' started at 2026-11-07 22:05:18.887
+Test Suite 'RuleEngineSupplementTests' started at 2026-11-08 22:22:23.336
+Test Case 'RuleEngineSupplementTests.testCookieJarIsolationBetweenSources' started at 2026-11-08 22:22:23.336
+Test Case 'RuleEngineSupplementTests.testCookieJarIsolationBetweenSources' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testCookieJarMatchesSemantics' started at 2026-11-08 22:22:23.336
+Test Case 'RuleEngineSupplementTests.testCookieJarMatchesSemantics' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testCookieJarPersistToggle' started at 2026-11-08 22:22:23.336
+Test Case 'RuleEngineSupplementTests.testCookieJarPersistToggle' passed (0.001 seconds)
+Test Case 'RuleEngineSupplementTests.testCookieJarStoreAndHeaderRoundTrip' started at 2026-11-08 22:22:23.338
+Test Case 'RuleEngineSupplementTests.testCookieJarStoreAndHeaderRoundTrip' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testDoubleBracePureTemplates' started at 2026-11-08 22:22:23.338
+Test Case 'RuleEngineSupplementTests.testDoubleBracePureTemplates' passed (0.001 seconds)
+Test Case 'RuleEngineSupplementTests.testListSourcesAndOperator' started at 2026-11-08 22:22:23.339
+Test Case 'RuleEngineSupplementTests.testListSourcesAndOperator' passed (0.001 seconds)
+Test Case 'RuleEngineSupplementTests.testListSourcesConcatOperator' started at 2026-11-08 22:22:23.339
+Test Case 'RuleEngineSupplementTests.testListSourcesConcatOperator' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testListSourcesOrOperator' started at 2026-11-08 22:22:23.340
+Test Case 'RuleEngineSupplementTests.testListSourcesOrOperator' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testListSourcesPlainSelector' started at 2026-11-08 22:22:23.340
+Test Case 'RuleEngineSupplementTests.testListSourcesPlainSelector' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testListSourcesReversePrefix' started at 2026-11-08 22:22:23.340
+Test Case 'RuleEngineSupplementTests.testListSourcesReversePrefix' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testListSourcesThrowsOnJSAndReplacement' started at 2026-11-08 22:22:23.341
+Test Case 'RuleEngineSupplementTests.testListSourcesThrowsOnJSAndReplacement' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testNonRuleBraceContentThrowsJSUnsupported' started at 2026-11-08 22:22:23.341
+Test Case 'RuleEngineSupplementTests.testNonRuleBraceContentThrowsJSUnsupported' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testSingleBraceJSONPathInsideURLTemplate' started at 2026-11-08 22:22:23.341
+Test Case 'RuleEngineSupplementTests.testSingleBraceJSONPathInsideURLTemplate' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testSingleBraceNestedCSSInsideURLTemplate' started at 2026-11-08 22:22:23.342
+Test Case 'RuleEngineSupplementTests.testSingleBraceNestedCSSInsideURLTemplate' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testXPathAttributeExtraction' started at 2026-11-08 22:22:23.342
+Test Case 'RuleEngineSupplementTests.testXPathAttributeExtraction' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testXPathPatchBareTR' started at 2026-11-08 22:22:23.342
+Test Case 'RuleEngineSupplementTests.testXPathPatchBareTR' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testXPathPatchBareTbody' started at 2026-11-08 22:22:23.343
+Test Case 'RuleEngineSupplementTests.testXPathPatchBareTbody' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testXPathPatchUnterminatedTable' started at 2026-11-08 22:22:23.343
+Test Case 'RuleEngineSupplementTests.testXPathPatchUnterminatedTable' passed (0.0 seconds)
+Test Case 'RuleEngineSupplementTests.testXPathXMLDocumentUsesXMLParser' started at 2026-11-08 22:22:23.343
+Test Case 'RuleEngineSupplementTests.testXPathXMLDocumentUsesXMLParser' passed (0.0 seconds)
+Test Suite 'RuleEngineSupplementTests' passed at 2026-11-08 22:22:23.343
+	 Executed 19 tests, with 0 failures (0 unexpected) in 0.007 (0.007) seconds
+Test Suite 'RuleEngineTests' started at 2026-11-08 22:22:23.343
+Test Case 'RuleEngineTests.testAndOperatorMergesBothSides' started at 2026-11-08 22:22:23.343
+Test Case 'RuleEngineTests.testAndOperatorMergesBothSides' passed (0.0 seconds)
+Test Case 'RuleEngineTests.testBracesUnknownContentThrowsInsteadOfSilentEmpty' started at 2026-11-08 22:22:23.344
 Test Case 'RuleEngineTests.testBracesUnknownContentThrowsInsteadOfSilentEmpty' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testBracesWithNestedRuleIsEvaluatedAsRule' started at 2026-11-07 22:05:18.887
+Test Case 'RuleEngineTests.testBracesWithNestedRuleIsEvaluatedAsRule' started at 2026-11-08 22:22:23.344
 Test Case 'RuleEngineTests.testBracesWithNestedRuleIsEvaluatedAsRule' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testBracesWithPlainTextIsVariableSubstitution' started at 2026-11-07 22:05:18.888
+Test Case 'RuleEngineTests.testBracesWithPlainTextIsVariableSubstitution' started at 2026-11-08 22:22:23.344
 Test Case 'RuleEngineTests.testBracesWithPlainTextIsVariableSubstitution' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testChapterListReverseMarker' started at 2026-11-07 22:05:18.888
+Test Case 'RuleEngineTests.testChapterListReverseMarker' started at 2026-11-08 22:22:23.344
 Test Case 'RuleEngineTests.testChapterListReverseMarker' passed (0.001 seconds)
-Test Case 'RuleEngineTests.testContainsJSDetection' started at 2026-11-07 22:05:18.889
+Test Case 'RuleEngineTests.testContainsJSDetection' started at 2026-11-08 22:22:23.345
 Test Case 'RuleEngineTests.testContainsJSDetection' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testEntityDecoding' started at 2026-11-07 22:05:18.889
+Test Case 'RuleEngineTests.testEntityDecoding' started at 2026-11-08 22:22:23.345
 Test Case 'RuleEngineTests.testEntityDecoding' passed (0.007 seconds)
-Test Case 'RuleEngineTests.testExtractActions' started at 2026-11-07 22:05:18.896
+Test Case 'RuleEngineTests.testExtractActions' started at 2026-11-08 22:22:23.352
 Test Case 'RuleEngineTests.testExtractActions' passed (0.001 seconds)
-Test Case 'RuleEngineTests.testGetPutVariables' started at 2026-11-07 22:05:18.897
+Test Case 'RuleEngineTests.testGetPutVariables' started at 2026-11-08 22:22:23.353
 Test Case 'RuleEngineTests.testGetPutVariables' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testGreedyJsTailAfterCssSegment' started at 2026-11-07 22:05:18.897
+Test Case 'RuleEngineTests.testGreedyJsTailAfterCssSegment' started at 2026-11-08 22:22:23.354
 Test Case 'RuleEngineTests.testGreedyJsTailAfterCssSegment' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testGreedyJsTailSwallowsRestOfRule' started at 2026-11-07 22:05:18.897
+Test Case 'RuleEngineTests.testGreedyJsTailSwallowsRestOfRule' started at 2026-11-08 22:22:23.354
 Test Case 'RuleEngineTests.testGreedyJsTailSwallowsRestOfRule' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testGroupBackfill' started at 2026-11-07 22:05:18.897
+Test Case 'RuleEngineTests.testGroupBackfill' started at 2026-11-08 22:22:23.354
 Test Case 'RuleEngineTests.testGroupBackfill' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testIndexSyntaxBracketGroups' started at 2026-11-07 22:05:18.897
+Test Case 'RuleEngineTests.testIndexSyntaxBracketGroups' started at 2026-11-08 22:22:23.354
 Test Case 'RuleEngineTests.testIndexSyntaxBracketGroups' passed (0.001 seconds)
-Test Case 'RuleEngineTests.testIndexSyntaxDotRange' started at 2026-11-07 22:05:18.898
+Test Case 'RuleEngineTests.testIndexSyntaxDotRange' started at 2026-11-08 22:22:23.355
 Test Case 'RuleEngineTests.testIndexSyntaxDotRange' passed (0.001 seconds)
-Test Case 'RuleEngineTests.testJsTagIsNonGreedy' started at 2026-11-07 22:05:18.900
+Test Case 'RuleEngineTests.testJsTagIsNonGreedy' started at 2026-11-08 22:22:23.356
 Test Case 'RuleEngineTests.testJsTagIsNonGreedy' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testModePrefixes' started at 2026-11-07 22:05:18.900
+Test Case 'RuleEngineTests.testModePrefixes' started at 2026-11-08 22:22:23.356
 Test Case 'RuleEngineTests.testModePrefixes' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testOrOperatorPicksFirstNonEmpty' started at 2026-11-07 22:05:18.900
+Test Case 'RuleEngineTests.testOrOperatorPicksFirstNonEmpty' started at 2026-11-08 22:22:23.356
 Test Case 'RuleEngineTests.testOrOperatorPicksFirstNonEmpty' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testRelativeUrlAbsolutization' started at 2026-11-07 22:05:18.900
+Test Case 'RuleEngineTests.testRelativeUrlAbsolutization' started at 2026-11-08 22:22:23.356
 Test Case 'RuleEngineTests.testRelativeUrlAbsolutization' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testReplacementAppliesInOrder' started at 2026-11-07 22:05:18.900
+Test Case 'RuleEngineTests.testReplacementAppliesInOrder' started at 2026-11-08 22:22:23.356
 Test Case 'RuleEngineTests.testReplacementAppliesInOrder' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testReplacementChainModeDetection' started at 2026-11-07 22:05:18.901
+Test Case 'RuleEngineTests.testReplacementChainModeDetection' started at 2026-11-08 22:22:23.357
 Test Case 'RuleEngineTests.testReplacementChainModeDetection' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testReplacementChainSequentialApplication' started at 2026-11-07 22:05:18.901
+Test Case 'RuleEngineTests.testReplacementChainSequentialApplication' started at 2026-11-08 22:22:23.357
 Test Case 'RuleEngineTests.testReplacementChainSequentialApplication' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testReplacementThirdSegmentMeansReplaceFirstOnly' started at 2026-11-07 22:05:18.901
-Test Case 'RuleEngineTests.testReplacementThirdSegmentMeansReplaceFirstOnly' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testReplacementTwoSegmentsReplacesAll' started at 2026-11-07 22:05:18.901
+Test Case 'RuleEngineTests.testReplacementEmptyThirdSegmentReplacesAll' started at 2026-11-08 22:22:23.357
+Test Case 'RuleEngineTests.testReplacementEmptyThirdSegmentReplacesAll' passed (0.0 seconds)
+Test Case 'RuleEngineTests.testReplacementThirdSegmentNonEmptyMeansReplaceFirstOnly' started at 2026-11-08 22:22:23.357
+Test Case 'RuleEngineTests.testReplacementThirdSegmentNonEmptyMeansReplaceFirstOnly' passed (0.0 seconds)
+Test Case 'RuleEngineTests.testReplacementThirdSegmentReplacesOnlyFirstOccurrence' started at 2026-11-08 22:22:23.357
+Test Case 'RuleEngineTests.testReplacementThirdSegmentReplacesOnlyFirstOccurrence' passed (0.0 seconds)
+Test Case 'RuleEngineTests.testReplacementTwoSegmentsReplacesAll' started at 2026-11-08 22:22:23.357
 Test Case 'RuleEngineTests.testReplacementTwoSegmentsReplacesAll' passed (0.0 seconds)
-Test Case 'RuleEngineTests.testXPathNormalPath' started at 2026-11-07 22:05:18.901
-Test Case 'RuleEngineTests.testXPathNormalPath' passed (0.001 seconds)
-Test Case 'RuleEngineTests.testXPathTablePatch' started at 2026-11-07 22:05:18.902
+Test Case 'RuleEngineTests.testXPathNormalPath' started at 2026-11-08 22:22:23.358
+Test Case 'RuleEngineTests.testXPathNormalPath' passed (0.0 seconds)
+Test Case 'RuleEngineTests.testXPathTablePatch' started at 2026-11-08 22:22:23.358
 Test Case 'RuleEngineTests.testXPathTablePatch' passed (0.0 seconds)
-Test Suite 'RuleEngineTests' passed at 2026-11-07 22:05:18.903
-	 Executed 25 tests, with 0 failures (0 unexpected) in 0.016 (0.016) seconds
-Test Suite 'SettingsTests' started at 2026-11-07 22:05:18.903
-Test Case 'SettingsTests.testClampedKeepsValidValues' started at 2026-11-07 22:05:18.903
+Test Suite 'RuleEngineTests' passed at 2026-11-08 22:22:23.358
+	 Executed 27 tests, with 0 failures (0 unexpected) in 0.015 (0.015) seconds
+Test Suite 'SettingsTests' started at 2026-11-08 22:22:23.358
+Test Case 'SettingsTests.testClampedKeepsValidValues' started at 2026-11-08 22:22:23.358
 Test Case 'SettingsTests.testClampedKeepsValidValues' passed (0.0 seconds)
-Test Case 'SettingsTests.testClampedPullsAllIntoRange' started at 2026-11-07 22:05:18.903
+Test Case 'SettingsTests.testClampedPullsAllIntoRange' started at 2026-11-08 22:22:23.358
 Test Case 'SettingsTests.testClampedPullsAllIntoRange' passed (0.0 seconds)
-Test Case 'SettingsTests.testCodableRoundTrip' started at 2026-11-07 22:05:18.903
+Test Case 'SettingsTests.testCodableRoundTrip' started at 2026-11-08 22:22:23.358
 Test Case 'SettingsTests.testCodableRoundTrip' passed (0.0 seconds)
-Test Case 'SettingsTests.testDefaults' started at 2026-11-07 22:05:18.903
+Test Case 'SettingsTests.testDefaults' started at 2026-11-08 22:22:23.359
 Test Case 'SettingsTests.testDefaults' passed (0.0 seconds)
-Test Case 'SettingsTests.testFontSizeRange' started at 2026-11-07 22:05:18.903
+Test Case 'SettingsTests.testFontSizeRange' started at 2026-11-08 22:22:23.359
 Test Case 'SettingsTests.testFontSizeRange' passed (0.0 seconds)
-Test Case 'SettingsTests.testLayoutSignatureChangesWithLayoutParams' started at 2026-11-07 22:05:18.903
+Test Case 'SettingsTests.testLayoutSignatureChangesWithLayoutParams' started at 2026-11-08 22:22:23.359
 Test Case 'SettingsTests.testLayoutSignatureChangesWithLayoutParams' passed (0.0 seconds)
-Test Case 'SettingsTests.testLayoutSignatureIgnoresTheme' started at 2026-11-07 22:05:18.903
+Test Case 'SettingsTests.testLayoutSignatureIgnoresTheme' started at 2026-11-08 22:22:23.359
 Test Case 'SettingsTests.testLayoutSignatureIgnoresTheme' passed (0.0 seconds)
-Test Case 'SettingsTests.testLayoutSignatureStableForSameSettings' started at 2026-11-07 22:05:18.903
+Test Case 'SettingsTests.testLayoutSignatureStableForSameSettings' started at 2026-11-08 22:22:23.359
 Test Case 'SettingsTests.testLayoutSignatureStableForSameSettings' passed (0.0 seconds)
-Test Case 'SettingsTests.testLineSpacingRange' started at 2026-11-07 22:05:18.903
+Test Case 'SettingsTests.testLineSpacingRange' started at 2026-11-08 22:22:23.359
 Test Case 'SettingsTests.testLineSpacingRange' passed (0.0 seconds)
-Test Case 'SettingsTests.testPresetsCoverFullRange' started at 2026-11-07 22:05:18.903
+Test Case 'SettingsTests.testPresetsCoverFullRange' started at 2026-11-08 22:22:23.359
 Test Case 'SettingsTests.testPresetsCoverFullRange' passed (0.0 seconds)
-Test Case 'SettingsTests.testThemePalette' started at 2026-11-07 22:05:18.903
+Test Case 'SettingsTests.testThemePalette' started at 2026-11-08 22:22:23.359
 Test Case 'SettingsTests.testThemePalette' passed (0.0 seconds)
-Test Suite 'SettingsTests' passed at 2026-11-07 22:05:18.903
+Test Suite 'SettingsTests' passed at 2026-11-08 22:22:23.359
 	 Executed 11 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
-Test Suite 'TXTImporterTests' started at 2026-11-07 22:05:18.903
-Test Case 'TXTImporterTests.testBodyOfChapterMatchesRange' started at 2026-11-07 22:05:18.903
+Test Suite 'TXTImporterTests' started at 2026-11-08 22:22:23.359
+Test Case 'TXTImporterTests.testBodyOfChapterMatchesRange' started at 2026-11-08 22:22:23.359
 Test Case 'TXTImporterTests.testBodyOfChapterMatchesRange' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testChaptersCoverEntireTextNoGapNoOverlap' started at 2026-11-07 22:05:18.904
+Test Case 'TXTImporterTests.testChaptersCoverEntireTextNoGapNoOverlap' started at 2026-11-08 22:22:23.360
 Test Case 'TXTImporterTests.testChaptersCoverEntireTextNoGapNoOverlap' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testChineseNumberChapters' started at 2026-11-07 22:05:18.904
+Test Case 'TXTImporterTests.testChineseNumberChapters' started at 2026-11-08 22:22:23.360
 Test Case 'TXTImporterTests.testChineseNumberChapters' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testDecodeResponseCharsetGBK' started at 2026-11-07 22:05:18.904
-Test Case 'TXTImporterTests.testDecodeResponseCharsetGBK' passed (0.156 seconds)
-Test Case 'TXTImporterTests.testDecodeResponseDefaultUTF8' started at 2026-11-07 22:05:19.060
+Test Case 'TXTImporterTests.testDecodeResponseCharsetGBK' started at 2026-11-08 22:22:23.360
+Test Case 'TXTImporterTests.testDecodeResponseCharsetGBK' passed (0.165 seconds)
+Test Case 'TXTImporterTests.testDecodeResponseDefaultUTF8' started at 2026-11-08 22:22:23.525
 Test Case 'TXTImporterTests.testDecodeResponseDefaultUTF8' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testFullWidthDigits' started at 2026-11-07 22:05:19.060
+Test Case 'TXTImporterTests.testFullWidthDigits' started at 2026-11-08 22:22:23.525
 Test Case 'TXTImporterTests.testFullWidthDigits' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testImportEmptyThrows' started at 2026-11-07 22:05:19.061
+Test Case 'TXTImporterTests.testImportEmptyThrows' started at 2026-11-08 22:22:23.525
 Test Case 'TXTImporterTests.testImportEmptyThrows' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testImportForcedEncodingMismatchThrows' started at 2026-11-07 22:05:19.061
+Test Case 'TXTImporterTests.testImportForcedEncodingMismatchThrows' started at 2026-11-08 22:22:23.525
 Test Case 'TXTImporterTests.testImportForcedEncodingMismatchThrows' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testImportFromDataGBK' started at 2026-11-07 22:05:19.061
+Test Case 'TXTImporterTests.testImportFromDataGBK' started at 2026-11-08 22:22:23.525
 Test Case 'TXTImporterTests.testImportFromDataGBK' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testImportFromDataUTF8' started at 2026-11-07 22:05:19.061
+Test Case 'TXTImporterTests.testImportFromDataUTF8' started at 2026-11-08 22:22:23.526
 Test Case 'TXTImporterTests.testImportFromDataUTF8' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testImportRespectsRuleID' started at 2026-11-07 22:05:19.061
+Test Case 'TXTImporterTests.testImportRespectsRuleID' started at 2026-11-08 22:22:23.526
 Test Case 'TXTImporterTests.testImportRespectsRuleID' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testLongLineNotTreatedAsTitle' started at 2026-11-07 22:05:19.062
+Test Case 'TXTImporterTests.testLongLineNotTreatedAsTitle' started at 2026-11-08 22:22:23.526
 Test Case 'TXTImporterTests.testLongLineNotTreatedAsTitle' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testLooksGarbled' started at 2026-11-07 22:05:19.062
+Test Case 'TXTImporterTests.testLooksGarbled' started at 2026-11-08 22:22:23.526
 Test Case 'TXTImporterTests.testLooksGarbled' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testLooseRuleChapterNumber' started at 2026-11-07 22:05:19.062
+Test Case 'TXTImporterTests.testLooseRuleChapterNumber' started at 2026-11-08 22:22:23.526
 Test Case 'TXTImporterTests.testLooseRuleChapterNumber' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testLooseRuleNumericTitle' started at 2026-11-07 22:05:19.062
+Test Case 'TXTImporterTests.testLooseRuleNumericTitle' started at 2026-11-08 22:22:23.526
 Test Case 'TXTImporterTests.testLooseRuleNumericTitle' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testLooseRuleParenNumber' started at 2026-11-07 22:05:19.062
+Test Case 'TXTImporterTests.testLooseRuleParenNumber' started at 2026-11-08 22:22:23.526
 Test Case 'TXTImporterTests.testLooseRuleParenNumber' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testLooseRuleVolumeX' started at 2026-11-07 22:05:19.062
+Test Case 'TXTImporterTests.testLooseRuleVolumeX' started at 2026-11-08 22:22:23.527
 Test Case 'TXTImporterTests.testLooseRuleVolumeX' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testNoTitleFallsBackToSynthetic' started at 2026-11-07 22:05:19.063
-Test Case 'TXTImporterTests.testNoTitleFallsBackToSynthetic' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testPrologueAndEpilogue' started at 2026-11-07 22:05:19.063
+Test Case 'TXTImporterTests.testNoTitleFallsBackToSynthetic' started at 2026-11-08 22:22:23.527
+Test Case 'TXTImporterTests.testNoTitleFallsBackToSynthetic' passed (0.001 seconds)
+Test Case 'TXTImporterTests.testPrologueAndEpilogue' started at 2026-11-08 22:22:23.528
 Test Case 'TXTImporterTests.testPrologueAndEpilogue' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testRuleLookupByID' started at 2026-11-07 22:05:19.063
+Test Case 'TXTImporterTests.testRuleLookupByID' started at 2026-11-08 22:22:23.528
 Test Case 'TXTImporterTests.testRuleLookupByID' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testStandardRuleChapterize' started at 2026-11-07 22:05:19.063
+Test Case 'TXTImporterTests.testStandardRuleChapterize' started at 2026-11-08 22:22:23.528
 Test Case 'TXTImporterTests.testStandardRuleChapterize' passed (0.0 seconds)
-Test Case 'TXTImporterTests.testSyntheticChunkSize' started at 2026-11-07 22:05:19.064
+Test Case 'TXTImporterTests.testSyntheticChunkSize' started at 2026-11-08 22:22:23.528
 Test Case 'TXTImporterTests.testSyntheticChunkSize' passed (0.001 seconds)
-Test Case 'TXTImporterTests.testVolumeAndSectionMarkers' started at 2026-11-07 22:05:19.064
+Test Case 'TXTImporterTests.testVolumeAndSectionMarkers' started at 2026-11-08 22:22:23.529
 Test Case 'TXTImporterTests.testVolumeAndSectionMarkers' passed (0.0 seconds)
-Test Suite 'TXTImporterTests' passed at 2026-11-07 22:05:19.064
-	 Executed 23 tests, with 0 failures (0 unexpected) in 0.16 (0.16) seconds
-Test Suite 'URLTemplateTests' started at 2026-11-07 22:05:19.064
-Test Case 'URLTemplateTests.testAnalyzeNoRulesNoContextNeeded' started at 2026-11-07 22:05:19.064
+Test Suite 'TXTImporterTests' passed at 2026-11-08 22:22:23.529
+	 Executed 23 tests, with 0 failures (0 unexpected) in 0.169 (0.169) seconds
+Test Suite 'URLTemplateTests' started at 2026-11-08 22:22:23.529
+Test Case 'URLTemplateTests.testAnalyzeNoRulesNoContextNeeded' started at 2026-11-08 22:22:23.529
 Test Case 'URLTemplateTests.testAnalyzeNoRulesNoContextNeeded' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testEmptyJsOptionTreatedAsAbsent' started at 2026-11-07 22:05:19.064
+Test Case 'URLTemplateTests.testEmptyJsOptionTreatedAsAbsent' started at 2026-11-08 22:22:23.529
 Test Case 'URLTemplateTests.testEmptyJsOptionTreatedAsAbsent' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testGETQueryRuleEvaluationWithDOM' started at 2026-11-07 22:05:19.065
+Test Case 'URLTemplateTests.testGETQueryRuleEvaluationWithDOM' started at 2026-11-08 22:22:23.529
 Test Case 'URLTemplateTests.testGETQueryRuleEvaluationWithDOM' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testHeadersAndDnsIPOptions' started at 2026-11-07 22:05:19.065
+Test Case 'URLTemplateTests.testHeadersAndDnsIPOptions' started at 2026-11-08 22:22:23.529
 Test Case 'URLTemplateTests.testHeadersAndDnsIPOptions' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testMissingVariableLeavesEmpty' started at 2026-11-07 22:05:19.065
+Test Case 'URLTemplateTests.testMissingVariableLeavesEmpty' started at 2026-11-08 22:22:23.530
 Test Case 'URLTemplateTests.testMissingVariableLeavesEmpty' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testOptionBodyJsUnsupported' started at 2026-11-07 22:05:19.065
-Test Case 'URLTemplateTests.testOptionBodyJsUnsupported' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testOptionGETDefault' started at 2026-11-07 22:05:19.065
+Test Case 'URLTemplateTests.testOptionBodyJsKeptButNotExecuted' started at 2026-11-08 22:22:23.530
+Test Case 'URLTemplateTests.testOptionBodyJsKeptButNotExecuted' passed (0.0 seconds)
+Test Case 'URLTemplateTests.testOptionGETDefault' started at 2026-11-08 22:22:23.530
 Test Case 'URLTemplateTests.testOptionGETDefault' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testOptionJSONParsedAfterFirstComma' started at 2026-11-07 22:05:19.066
+Test Case 'URLTemplateTests.testOptionJSONParsedAfterFirstComma' started at 2026-11-08 22:22:23.530
 Test Case 'URLTemplateTests.testOptionJSONParsedAfterFirstComma' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testOptionJsUnsupported' started at 2026-11-07 22:05:19.066
+Test Case 'URLTemplateTests.testOptionJsUnsupported' started at 2026-11-08 22:22:23.530
 Test Case 'URLTemplateTests.testOptionJsUnsupported' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testOptionWebJsUnsupported' started at 2026-11-07 22:05:19.066
+Test Case 'URLTemplateTests.testOptionWebJsUnsupported' started at 2026-11-08 22:22:23.530
 Test Case 'URLTemplateTests.testOptionWebJsUnsupported' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testOptionWebViewUnsupported' started at 2026-11-07 22:05:19.066
+Test Case 'URLTemplateTests.testOptionWebViewUnsupported' started at 2026-11-08 22:22:23.530
 Test Case 'URLTemplateTests.testOptionWebViewUnsupported' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testPOSTBodyPlainStringUntouched' started at 2026-11-07 22:05:19.066
+Test Case 'URLTemplateTests.testPOSTBodyPlainStringUntouched' started at 2026-11-08 22:22:23.530
 Test Case 'URLTemplateTests.testPOSTBodyPlainStringUntouched' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testPOSTFormBodyRuleEvaluation' started at 2026-11-07 22:05:19.066
+Test Case 'URLTemplateTests.testPOSTFormBodyRuleEvaluation' started at 2026-11-08 22:22:23.530
 Test Case 'URLTemplateTests.testPOSTFormBodyRuleEvaluation' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testPathValueEncodingKeepsSlash' started at 2026-11-07 22:05:19.066
+Test Case 'URLTemplateTests.testPathValueEncodingKeepsSlash' started at 2026-11-08 22:22:23.531
 Test Case 'URLTemplateTests.testPathValueEncodingKeepsSlash' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testSimpleVariableSubstitution' started at 2026-11-07 22:05:19.066
+Test Case 'URLTemplateTests.testSimpleVariableSubstitution' started at 2026-11-08 22:22:23.531
 Test Case 'URLTemplateTests.testSimpleVariableSubstitution' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testSplitOptionURLWithoutJSON' started at 2026-11-07 22:05:19.067
+Test Case 'URLTemplateTests.testSplitOptionURLWithoutJSON' started at 2026-11-08 22:22:23.531
 Test Case 'URLTemplateTests.testSplitOptionURLWithoutJSON' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testSplitOptionWithCommaInURL' started at 2026-11-07 22:05:19.067
+Test Case 'URLTemplateTests.testSplitOptionWithCommaInURL' started at 2026-11-08 22:22:23.531
 Test Case 'URLTemplateTests.testSplitOptionWithCommaInURL' passed (0.0 seconds)
-Test Case 'URLTemplateTests.testUTF8AndSpecialCharsEncoded' started at 2026-11-07 22:05:19.067
+Test Case 'URLTemplateTests.testUTF8AndSpecialCharsEncoded' started at 2026-11-08 22:22:23.531
 Test Case 'URLTemplateTests.testUTF8AndSpecialCharsEncoded' passed (0.0 seconds)
-Test Suite 'URLTemplateTests' passed at 2026-11-07 22:05:19.067
+Test Suite 'URLTemplateTests' passed at 2026-11-08 22:22:23.531
 	 Executed 18 tests, with 0 failures (0 unexpected) in 0.002 (0.002) seconds
-Test Suite 'debug.xctest' passed at 2026-11-07 22:05:19.067
-	 Executed 177 tests, with 0 failures (0 unexpected) in 0.231 (0.231) seconds
-Test Suite 'All tests' passed at 2026-11-07 22:05:19.067
-	 Executed 177 tests, with 0 failures (0 unexpected) in 0.231 (0.231) seconds
-◇ Test run started.
-↳ Testing Library Version: 6.0.3 (18c42c19cac3faf)
-✔ Test run with 0 tests passed after 0.001 seconds.
-EXIT_CODE=0
+Test Suite 'debug.xctest' passed at 2026-11-08 22:22:23.531
+	 Executed 222 tests, with 0 failures (0 unexpected) in 0.565 (0.565) seconds
+Test Suite 'All tests' passed at 2026-11-08 22:22:23.531
+	 Executed 222 tests, with 0 failures (0 unexpected) in 0.565 (0.565) seconds

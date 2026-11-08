@@ -113,50 +113,101 @@ public struct RuleEvaluator: Sendable {
 
     /// 列表求值，但每个元素保留为可再求值的源（搜索列表 / 目录列表用）。
     /// 这样 Domain 层可以对每个条目再跑字段规则（名称 / 作者 / 链接），而不必接触 SwiftSoup 类型。
+    ///
+    /// v1.2.0 修正（P1#1）：原实现对「多段 / 含 @put / 含 ##替换」的列表规则**静默退回
+    /// 纯文本列表**，调用方再对文本做字段规则必然取空且不报错。现在按算子结构递归求值，
+    /// 确实无法做元素级求值的形态显式抛 `RuleEvalError.selectorFailed`：
+    ///   · `||` 备选：逐分支求值，第一个非空胜出（保持元素态）
+    ///   · `&&` 并列：两侧元素合并（保持元素态）
+    ///   · `%%` 拼接：字符串语义，结果必然是单个文本源（按定义不是降级）
+    ///   · `-` 前缀：元素列表倒序
+    ///   · JS 段 / 多段 / `@put` / `##替换`：显式报错并带定位片段
     public func evaluateListSources(rule: String, in baseCtx: EvalContext) throws -> [EvalSource] {
-        let ctx = baseCtx.materializingBuiltinVariables()
-        let segments = RuleParser.parse(rule)
-        // 仅当规则是「单段 + HTML 源」时才有元素级能力；其余退回文本列表
-        guard segments.count == 1, let seg = segments.first, seg.kind == .plain,
-              seg.replacement == nil, seg.puts.isEmpty else {
-            return try evaluateList(rule: rule, in: ctx).map {
-                EvalSource.detect($0, baseURL: ctx.baseURL)
-            }
+        try listSources(rule: rule, ctx: baseCtx.materializingBuiltinVariables(), depth: 0)
+    }
+
+    private func listSources(rule: String, ctx: EvalContext, depth: Int) throws -> [EvalSource] {
+        guard depth <= 8 else { throw RuleEvalError.recursionLimit }
+        var text = rule
+        var reverse = false
+        if text.hasPrefix("-") {
+            reverse = true
+            text = String(text.dropFirst())
+        }
+        if text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            return [ctx.source]
         }
 
+        let orParts = RuleOperators.splitTopLevel(text, "||")
+        if orParts.count > 1 {
+            for part in orParts {
+                let r = try listSources(rule: part, ctx: ctx, depth: depth + 1)
+                if !r.isEmpty { return r }
+            }
+            return []
+        }
+
+        let andParts = RuleOperators.splitTopLevel(text, "&&")
+        if andParts.count > 1 {
+            var merged: [EvalSource] = []
+            for part in andParts {
+                merged += try listSources(rule: part, ctx: ctx, depth: depth + 1)
+            }
+            return merged
+        }
+
+        let concatParts = RuleOperators.splitTopLevel(text, "%%")
+        if concatParts.count > 1 {
+            var joined = ""
+            for part in concatParts {
+                joined += (try? evaluate(rule: part, in: ctx)) ?? ""
+            }
+            return [EvalSource.detect(joined, baseURL: ctx.baseURL)]
+        }
+
+        let segments = RuleParser.parse(text)
+        guard segments.count == 1, let seg = segments.first, seg.kind == .plain else {
+            throw RuleEvalError.selectorFailed(
+                "列表规则含 JS 或多段，无法产出可逐项求值的元素：\(text.prefix(48))"
+            )
+        }
+        guard seg.puts.isEmpty, seg.replacement == nil else {
+            throw RuleEvalError.selectorFailed(
+                "列表规则含 @put / ##替换，无法产出可逐项求值的元素：\(text.prefix(48))"
+            )
+        }
+
+        var elements: [EvalSource] = []
         switch seg.mode {
         case .default:
             guard let root = ctx.source.elementRoot() else { break }
-            let elements = try DefaultSelector.evaluateElements(rule: seg.rule, from: [root])
-            if !elements.isEmpty {
-                return elements.map {
-                    EvalSource(kind: .html,
-                               text: (try? $0.outerHtml()) ?? "",
-                               element: $0,
-                               baseURL: ctx.baseURL)
+            let found = try DefaultSelector.evaluateElements(rule: seg.rule, from: [root])
+            if !found.isEmpty {
+                elements = found.map {
+                    EvalSource(kind: .html, text: (try? $0.outerHtml()) ?? "", element: $0, baseURL: ctx.baseURL)
                 }
             }
         case .xpath:
+            // XPathSelector.nodes 直接返回可再求值的源（元素 / 属性值 / 文本节点三形态）
             let nodes = try XPathSelector.nodes(rule: seg.rule, html: ctx.source.text)
-            if !nodes.isEmpty {
-                return nodes.map { node in
-                    let xml = node.xmlString
-                    return (try? EvalSource.html(xml, baseURL: ctx.baseURL))
-                        ?? EvalSource.text(xml, baseURL: ctx.baseURL)
-                }
-            }
+            elements = nodes.map { $0.withBaseURL(ctx.baseURL) }
         case .json:
             guard let json = ctx.source.jsonValue() else { break }
             let nodes = try JsonPath.query(seg.rule, on: json)
             if !nodes.isEmpty {
-                return nodes.map { EvalSource.json($0, baseURL: ctx.baseURL) }
+                elements = nodes.map { EvalSource.json($0, baseURL: ctx.baseURL) }
             }
         case .regex:
             break
         }
-        return try evaluateList(rule: rule, in: ctx).map {
-            EvalSource.detect($0, baseURL: ctx.baseURL)
+
+        if elements.isEmpty {
+            // 元素级未命中：正则模式与「选择器未命中」按文本列表口径兜底
+            elements = try evaluateList(rule: text, in: ctx).map {
+                EvalSource.detect($0, baseURL: ctx.baseURL)
+            }
         }
+        return reverse ? Array(elements.reversed()) : elements
     }
 
     // MARK: 算子层

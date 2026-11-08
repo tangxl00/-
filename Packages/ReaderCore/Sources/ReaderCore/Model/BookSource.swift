@@ -52,6 +52,9 @@ public struct BookSource: Codable, Sendable, Identifiable, Equatable {
     public var ruleToc: Data
     public var ruleContent: Data
     public var ruleReview: Data?
+    /// P1-20（v1.2.0）：规则字段在解码阶段发现的问题（字段名 + 原因）。
+    /// 瞬时态：不参与 Codable（CodingKeys 不含它），导入流程在建档时消费。
+    public var ruleDecodeIssues: [String] = []
     /// 未被识别的其它字段，用于无损往返（导入导出不丢数据）。
     public var unknownFields: [String: JsonValue]
 
@@ -92,6 +95,27 @@ public struct BookSource: Codable, Sendable, Identifiable, Equatable {
     private func decodeRule<T: Decodable>(_ data: Data) -> T? {
         guard !data.isEmpty else { return nil }
         return try? JSONDecoder().decode(T.self, from: data)
+    }
+
+    /// P1-20（v1.2.0）：五个规则字段的真实类型解码复验。
+    /// 旧实现 ruleSearch 解码失败静默退化成空 SearchRule()，叠加导入后表现为
+    /// 「导入成功但该源搜不到书」。现在导入流程消费本方法，畸形规则按失败明细上报。
+    public func validateRuleDecoding() -> [String] {
+        var issues: [String] = []
+        func check<T: Decodable>(_ data: Data, _ name: String, _ type: T.Type) {
+            guard !data.isEmpty else { return }
+            do {
+                _ = try JSONDecoder().decode(T.self, from: data)
+            } catch {
+                issues.append("\(name) 结构无法解析（\(error.localizedDescription)）")
+            }
+        }
+        check(ruleSearch, "ruleSearch", SearchRule.self)
+        check(ruleExplore, "ruleExplore", ExploreRule.self)
+        check(ruleBookInfo, "ruleBookInfo", BookInfoRule.self)
+        check(ruleToc, "ruleToc", TocRule.self)
+        check(ruleContent, "ruleContent", ContentRule.self)
+        return issues
     }
 
     // MARK: 便捷判断
@@ -155,12 +179,14 @@ extension BookSource {
         exploreScreen = try c.decodeFlexibleString(.exploreScreen)
         homepageModules = try c.decodeFlexibleString(.homepageModules)
 
-        ruleSearch = try c.encodeRuleToData(.ruleSearch)
-        ruleExplore = try c.encodeRuleToData(.ruleExplore)
-        ruleBookInfo = try c.encodeRuleToData(.ruleBookInfo)
-        ruleToc = try c.encodeRuleToData(.ruleToc)
-        ruleContent = try c.encodeRuleToData(.ruleContent)
-        let reviewData = try c.encodeRuleToData(.ruleReview)
+        ruleDecodeIssues = []
+        ruleSearch = try c.encodeRuleToData(.ruleSearch, fieldName: "ruleSearch", issues: &ruleDecodeIssues)
+        ruleExplore = try c.encodeRuleToData(.ruleExplore, fieldName: "ruleExplore", issues: &ruleDecodeIssues)
+        ruleBookInfo = try c.encodeRuleToData(.ruleBookInfo, fieldName: "ruleBookInfo", issues: &ruleDecodeIssues)
+        ruleToc = try c.encodeRuleToData(.ruleToc, fieldName: "ruleToc", issues: &ruleDecodeIssues)
+        ruleContent = try c.encodeRuleToData(.ruleContent, fieldName: "ruleContent", issues: &ruleDecodeIssues)
+        var reviewIssues: [String] = []
+        let reviewData = try c.encodeRuleToData(.ruleReview, issues: &reviewIssues)
         ruleReview = reviewData.isEmpty ? nil : reviewData
 
         bookSourceComment = try c.decodeFlexibleString(.bookSourceComment)
@@ -272,7 +298,12 @@ extension KeyedDecodingContainer {
     }
 
     /// 规则子对象既可能是对象也可能是字符串，统一转成 Data 存储。
-    func encodeRuleToData(_ key: K) throws -> Data {
+    /// P1-20（v1.2.0）：畸形形态（字符串不是 JSON 对象 / 数组 / 数字布尔）不再静默变空，
+    /// 记入 issues 供导入流程上报。
+    func encodeRuleToData(_ key: K, fieldName: String? = nil, issues: inout [String]) throws -> Data {
+        func report(_ msg: String) {
+            if let fieldName { issues.append("\(fieldName) \(msg)") }
+        }
         if let v = try? decodeIfPresent(JsonValue.self, forKey: key) {
             switch v {
             case .null: return Data()
@@ -283,8 +314,14 @@ extension KeyedDecodingContainer {
                 if case .object(let o)? = JsonValue.parse(s) {
                     return (try? JSONEncoder().encode(JsonValue.object(o))) ?? Data()
                 }
+                report("为字符串形态但不是 JSON 对象，规则不可用")
                 return Data()
-            default: return Data()
+            case .array:
+                report("是数组（应为对象），规则不可用")
+                return Data()
+            case .number, .bool:
+                report("类型不符（应为对象），规则不可用")
+                return Data()
             }
         }
         return Data()

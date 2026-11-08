@@ -12,9 +12,6 @@
 
 import Foundation
 import SwiftSoup
-#if canImport(FoundationXML)
-import FoundationXML
-#endif
 
 // MARK: - 书籍 / 章节快照（只读，供 {{book.x}} 类变量与回调上下文使用）
 
@@ -134,6 +131,11 @@ public final class EvalSource: @unchecked Sendable {
 
     public func replacingText(_ newText: String) -> EvalSource {
         EvalSource.detect(newText, baseURL: baseURL)
+    }
+
+    /// 带基准 URL 的副本（列表条目再求值时要补上当前页地址）。
+    public func withBaseURL(_ url: String?) -> EvalSource {
+        EvalSource(kind: kind, text: text, element: element, json: json, baseURL: url)
     }
 }
 

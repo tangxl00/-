@@ -35,13 +35,18 @@ struct CoreTextMeasurer: TextMeasuring {
 
     func lines(in text: String, width: Double, lineHeight: Double) -> [TextLine] {
         // 协议的 lineHeight 参数即 baseLineHeight；这里以内部 settings 为准计算
-        // 段落间距（段后空白），使分页高度与渲染高度一致。
+        // 段落间距（段间空白），使分页高度与渲染高度一致。
+        //
+        // P1-16（v1.2.0）修复：旧实现把 paraExtra 加到「段内除首行外的每一行」
+        // （afterParagraphBreak 在段首行之后即 false），表现为行距被二次放大、
+        // 段间距反而为零，与「段距」语义正好相反。现在 paraExtra 只加在
+        // 段间——即除首个段落外，每段首行的行高里。
         let paraExtra = settings.paragraphSpacing
         var out: [TextLine] = []
         let chars = Array(text)
         let n = chars.count
         var idx = 0
-        var afterParagraphBreak = true
+        var isFirstParagraph = true
 
         while idx < n {
             // 找到段落末尾（\n 或文本结束）
@@ -49,12 +54,13 @@ struct CoreTextMeasurer: TextMeasuring {
             while paraEnd < n, chars[paraEnd] != "\n" { paraEnd += 1 }
 
             let paragraph = String(chars[idx..<paraEnd])
+            // 段间额外空白：首个段落不加；空行本身即视觉分隔，也不加
+            let leadExtra = (isFirstParagraph || paragraph.isEmpty) ? 0 : paraExtra
             if paragraph.isEmpty {
                 // 空行（连续 \n）：按一行高度计（与 ApproximateMeasurer 的硬换行语义一致）
-                let h = baseLineHeight + (afterParagraphBreak ? 0 : paraExtra)
-                out.append(TextLine(start: idx, end: min(paraEnd + 1, n), height: h))
+                out.append(TextLine(start: idx, end: min(paraEnd + 1, n), height: baseLineHeight))
                 idx = paraEnd + 1
-                afterParagraphBreak = true
+                isFirstParagraph = false
                 continue
             }
 
@@ -63,28 +69,42 @@ struct CoreTextMeasurer: TextMeasuring {
                 .font: Self.font(for: settings)
             ])
             guard let typesetter = CTTypesetterCreateWithAttributedString(attrString) else {
-                out.append(TextLine(start: idx, end: paraEnd, height: baseLineHeight))
+                out.append(TextLine(start: idx, end: paraEnd, height: baseLineHeight + leadExtra))
                 idx = paraEnd + 1
-                afterParagraphBreak = true
+                isFirstParagraph = false
                 continue
             }
             var lineStartOffset = 0   // 段内偏移（UTF-16）
             let utf16Len = paragraph.utf16.count
+            // 段内 Character 边界的 UTF-16 偏移集合（极窄宽度降级断行用，避免拆代理对）
+            var boundaries: Set<Int> = [0, utf16Len]
+            var acc = 0
+            for ch in paragraph {
+                acc += ch.utf16.count
+                boundaries.insert(acc)
+            }
+            var isParagraphFirstLine = true
             while lineStartOffset < utf16Len {
-                let count = CTTypesetterSuggestLineBreak(typesetter, lineStartOffset, Double(width))
-                guard count > 0 else { break }
+                var count = CTTypesetterSuggestLineBreak(typesetter, lineStartOffset, Double(width))
+                if count <= 0 {
+                    // P1-16 附带修复：极窄宽度下 SuggestLineBreak 可能返回 0，旧代码
+                    // break 会丢弃该段剩余文本。降级为前进到下一个 Character 边界
+                    //（至少 1 个 UTF-16 单位），保证不丢字且必然前进。
+                    let next = boundaries.first { $0 > lineStartOffset } ?? utf16Len
+                    count = next - lineStartOffset
+                    if count <= 0 { break }
+                }
                 // 段内 UTF-16 偏移 → 全局 Character 偏移
-                let sub16 = paragraph.utf16
                 let globalStart = idx + Self.characterIndex(utf16Offset: lineStartOffset, in: chars, base: idx, paragraph: paragraph)
                 let lineEnd16 = lineStartOffset + count
                 let globalEnd = lineEnd16 >= utf16Len ? paraEnd : idx + Self.characterIndex(utf16Offset: lineEnd16, in: chars, base: idx, paragraph: paragraph)
-                let h = baseLineHeight + (afterParagraphBreak ? 0 : paraExtra)
+                let h = baseLineHeight + (isParagraphFirstLine ? leadExtra : 0)
                 out.append(TextLine(start: globalStart, end: globalEnd, height: h))
-                afterParagraphBreak = false
+                isParagraphFirstLine = false
                 lineStartOffset = lineEnd16
             }
             idx = paraEnd + 1
-            afterParagraphBreak = true
+            isFirstParagraph = false
         }
         return out
     }

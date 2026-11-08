@@ -83,7 +83,8 @@ public struct SearchService: Sendable {
     public func search(
         keyword: String,
         sources: [BookSource],
-        unsupportedSources: [BookSource] = []
+        unsupportedSources: [BookSource] = [],
+        onOutcome: (@Sendable (SourceSearchOutcome) -> Void)? = nil
     ) async -> SearchReport {
         let trimmed = keyword.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else {
@@ -116,7 +117,8 @@ public struct SearchService: Sendable {
         let results = await runConcurrently(
             sources: usable,
             keyword: trimmed,
-            limit: max(1, config.maxConcurrency)
+            limit: max(1, config.maxConcurrency),
+            onOutcome: onOutcome
         )
         outcomes.append(contentsOf: results)
 
@@ -133,37 +135,38 @@ public struct SearchService: Sendable {
 
     // MARK: 并发控制
 
-    /// 分批并发：每批 `limit` 个源并行，批内完成后再开下一批。
-    /// 不用「一次性提交全部 + 信号量」是因为源数量可能上千，一次性建任务是浪费；
-    /// 分批还能让早出结果先展示（UI 侧可增量刷新）。
+    /// 流式并发：最多 `limit` 个源同时在跑，任一个完成立刻消费，并补一个新的进来。
+    ///
+    /// v1.2.0 修正（P1#10）：旧实现是「分批屏障」——一批 8 个全部完成才开下一批，
+    /// 总耗时约 ceil(N/8)×单源超时（N 源各卡 60s 时可到十几分钟），且第一个结果
+    /// 也要等整批。现在改为滑动窗口，单源超时只影响它自己。
     private func runConcurrently(
         sources: [BookSource],
         keyword: String,
-        limit: Int
+        limit: Int,
+        onOutcome: (@Sendable (SourceSearchOutcome) -> Void)? = nil
     ) async -> [SourceSearchOutcome] {
         guard !sources.isEmpty else { return [] }
         var out: [SourceSearchOutcome] = []
         out.reserveCapacity(sources.count)
+        let window = max(1, limit)
 
-        var index = 0
-        while index < sources.count {
-            let upper = min(index + limit, sources.count)
-            let batch = Array(sources[index..<upper])
-            let batchResults = await withTaskGroup(
-                of: SourceSearchOutcome.self,
-                returning: [SourceSearchOutcome].self
-            ) { group in
-                for src in batch {
-                    group.addTask {
-                        await self.searchOne(source: src, keyword: keyword)
-                    }
-                }
-                var acc: [SourceSearchOutcome] = []
-                for await r in group { acc.append(r) }
-                return acc
+        await withTaskGroup(of: SourceSearchOutcome.self) { group in
+            var next = 0
+            while next < min(window, sources.count) {
+                let src = sources[next]
+                next += 1
+                group.addTask { await self.searchOne(source: src, keyword: keyword) }
             }
-            out.append(contentsOf: batchResults)
-            index = upper
+            while let r = await group.next() {
+                out.append(r)
+                onOutcome?(r)
+                if next < sources.count {
+                    let src = sources[next]
+                    next += 1
+                    group.addTask { await self.searchOne(source: src, keyword: keyword) }
+                }
+            }
         }
         return out
     }
@@ -205,7 +208,8 @@ public struct SearchService: Sendable {
             let resp = try await fetchWithTimeout(
                 analyzed: analyzed,
                 sourceKey: source.bookSourceUrl,
-                seconds: config.perSourceTimeout
+                seconds: config.perSourceTimeout,
+                cookieJarEnabled: source.enabledCookieJar
             )
 
             // ③ 列表求值 + 字段求值
@@ -220,20 +224,44 @@ public struct SearchService: Sendable {
             var items: [SearchResultItem] = []
             items.reserveCapacity(listSources.count)
 
-            for element in listSources {
-                let name = (try? evaluator.evaluate(rule: rule.name ?? "", in: ctx.withSource(element))) ?? ""
-                let cleanName = name.trimmingCharacters(in: .whitespacesAndNewlines)
-                guard !cleanName.isEmpty else { continue }
-                let author = (try? evaluator.evaluate(rule: rule.author ?? "", in: ctx.withSource(element))) ?? ""
-                let bookUrlRule = rule.bookUrl ?? ""
-                var bookUrl = ""
-                if !bookUrlRule.isEmpty {
-                    var c = ctx.withSource(element)
-                    c.isURL = true
-                    bookUrl = (try? evaluator.evaluate(rule: bookUrlRule, in: c)) ?? ""
+            // P1#5：字段求值失败必须归因（条目序号 + 字段名 + 原因），不许 `try?` 吞成空串
+            var fieldErrors: [String] = []
+            var skipped = 0
+
+            func field(_ label: String, _ ruleText: String?, element: EvalSource, url: Bool = false) -> String {
+                guard let ruleText, !ruleText.isEmpty else { return "" }
+                var c = ctx.withSource(element)
+                if url { c.isURL = true }
+                do {
+                    return try evaluator.evaluate(rule: ruleText, in: c)
+                } catch {
+                    fieldErrors.append("\(label) 求值失败（\(Self.describe(error))）")
+                    return ""
                 }
+            }
+
+            func optionalField(_ label: String, _ ruleText: String?, element: EvalSource, url: Bool = false) -> String? {
+                let v = field(label, ruleText, element: element, url: url)
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                return v.isEmpty ? nil : v
+            }
+
+            for (index, element) in listSources.enumerated() {
+                let name = field("name", rule.name, element: element)
+                let cleanName = name.trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !cleanName.isEmpty else {
+                    skipped += 1
+                    continue
+                }
+                let author = field("author", rule.author, element: element)
                 // 详情页链接必填；取不到就跳过（否则后续无法进详情）
-                guard !bookUrl.isEmpty else { continue }
+                let bookUrl = field("bookUrl", rule.bookUrl, element: element, url: true)
+                    .trimmingCharacters(in: .whitespacesAndNewlines)
+                guard !bookUrl.isEmpty else {
+                    skipped += 1
+                    fieldErrors.append("第 \(index + 1) 条 bookUrl 为空（规则未命中）")
+                    continue
+                }
 
                 items.append(
                     SearchResultItem(
@@ -242,21 +270,36 @@ public struct SearchService: Sendable {
                         bookUrl: bookUrl,
                         origin: source.bookSourceUrl,
                         originName: source.bookSourceName,
-                        coverUrl: urlField(rule.coverUrl, ctx: ctx.withSource(element)),
-                        intro: textField(rule.intro, ctx: ctx.withSource(element)),
-                        kind: textField(rule.kind, ctx: ctx.withSource(element)),
-                        lastChapter: textField(rule.lastChapter, ctx: ctx.withSource(element)),
-                        updateTime: textField(rule.updateTime, ctx: ctx.withSource(element)),
-                        wordCount: textField(rule.wordCount, ctx: ctx.withSource(element))
+                        coverUrl: optionalField("coverUrl", rule.coverUrl, element: element, url: true),
+                        intro: optionalField("intro", rule.intro, element: element),
+                        kind: optionalField("kind", rule.kind, element: element),
+                        lastChapter: optionalField("lastChapter", rule.lastChapter, element: element),
+                        updateTime: optionalField("updateTime", rule.updateTime, element: element),
+                        wordCount: optionalField("wordCount", rule.wordCount, element: element)
                     )
                 )
             }
 
+            // 失败原因必须能被解释：空结果的 reason 里带上字段错误与跳过条数
+            var notes: [String] = []
+            if skipped > 0 { notes.append("跳过 \(skipped) 条（name/bookUrl 未命中）") }
+            if !fieldErrors.isEmpty {
+                let head = Array(fieldErrors.prefix(5)).joined(separator: "；")
+                let tail = fieldErrors.count > 5 ? "；等共 \(fieldErrors.count) 项" : ""
+                notes.append(head + tail)
+            }
+            let reason: String?
+            if items.isEmpty {
+                reason = "请求成功但规则未命中任何条目（可能是站点改版或规则不匹配）"
+                    + (notes.isEmpty ? "" : "；" + notes.joined(separator: "；"))
+            } else {
+                reason = notes.isEmpty ? nil : "部分条目异常：" + notes.joined(separator: "；")
+            }
             return SourceSearchOutcome(
                 sourceKey: source.bookSourceUrl, sourceName: source.bookSourceName,
                 state: items.isEmpty ? .empty : .success,
                 items: items,
-                errorMessage: items.isEmpty ? "请求成功但规则未命中任何条目（可能是站点改版或规则不匹配）" : nil,
+                errorMessage: reason,
                 elapsedMs: elapsed()
             )
         } catch {
@@ -275,30 +318,52 @@ public struct SearchService: Sendable {
     private func fetchWithTimeout(
         analyzed: AnalyzedUrl,
         sourceKey: String,
-        seconds: Int
+        seconds: Int,
+        cookieJarEnabled: Bool = false
     ) async throws -> HTTPResponse {
+        // P1-18（v1.2.0）修复：Box 被网络任务与计时任务两个并发任务写 finished，
+        // 旧实现无锁（@unchecked Sendable 只是让编译器闭嘴）。所有读写经 NSLock 串行化。
         final class Box: @unchecked Sendable {
-            var value: HTTPResponse?
-            var error: Error?
-            var finished = false
+            private let lock = NSLock()
+            private var _value: HTTPResponse?
+            private var _error: Error?
+
+            var value: HTTPResponse? {
+                lock.lock(); defer { lock.unlock() }
+                return _value
+            }
+            var error: Error? {
+                lock.lock(); defer { lock.unlock() }
+                return _error
+            }
+            func complete(value: HTTPResponse?) {
+                lock.lock(); defer { lock.unlock() }
+                if _value == nil { _value = value }
+            }
+            func complete(error: Error?) {
+                lock.lock(); defer { lock.unlock() }
+                if _error == nil { _error = error }
+            }
         }
         let box = Box()
 
         try await withThrowingTaskGroup(of: Void.self) { group in
             group.addTask {
                 do {
-                    let r = try await self.client.fetch(analyzed: analyzed, sourceKey: sourceKey)
-                    box.value = r
+                    let r = try await self.client.fetch(
+                        analyzed: analyzed,
+                        sourceKey: sourceKey,
+                        cookieJarEnabled: cookieJarEnabled
+                    )
+                    box.complete(value: r)
                 } catch {
-                    box.error = error
+                    box.complete(error: error)
                 }
-                box.finished = true
             }
             group.addTask {
                 try? await Task.sleep(nanoseconds: UInt64(max(1, seconds)) * 1_000_000_000)
-                box.finished = true
             }
-            // 等第一个完成的
+            // 等第一个完成的（计时任务只负责让 group.next() 提前返回触发 cancelAll）
             try await group.next()
             group.cancelAll()
         }
@@ -309,22 +374,6 @@ public struct SearchService: Sendable {
     }
 
     // MARK: 工具
-
-    private func textField(_ rule: String?, ctx: EvalContext) -> String? {
-        guard let rule, !rule.isEmpty else { return nil }
-        let v = (try? evaluator.evaluate(rule: rule, in: ctx)) ?? ""
-        let t = v.trimmingCharacters(in: .whitespacesAndNewlines)
-        return t.isEmpty ? nil : t
-    }
-
-    private func urlField(_ rule: String?, ctx: EvalContext) -> String? {
-        guard let rule, !rule.isEmpty else { return nil }
-        var c = ctx
-        c.isURL = true
-        let v = (try? evaluator.evaluate(rule: rule, in: c)) ?? ""
-        let t = v.trimmingCharacters(in: .whitespacesAndNewlines)
-        return t.isEmpty ? nil : t
-    }
 
     static func describe(_ error: Error) -> String {
         if let e = error as? SearchError { return e.description }

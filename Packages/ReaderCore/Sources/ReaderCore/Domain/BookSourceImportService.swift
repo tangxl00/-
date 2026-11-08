@@ -190,6 +190,21 @@ public struct BookSourceImportService: Sendable {
                 continue
             }
 
+            // ②.5 规则字段可解析性（P1-20：畸形规则不再静默变空）
+            let ruleIssues = source.ruleDecodeIssues + source.validateRuleDecoding()
+            if !ruleIssues.isEmpty {
+                items.append(
+                    ImportItemResult(
+                        index: index, sourceName: displayName, sourceURL: urlText,
+                        outcome: .failed,
+                        reason: "规则字段无法解析，导入后该源无法搜索/阅读，已按失败处理："
+                            + ruleIssues.joined(separator: "；"),
+                        jsHits: [], source: nil
+                    )
+                )
+                continue
+            }
+
             // ③ 去重
             if seen.contains(urlText) {
                 items.append(

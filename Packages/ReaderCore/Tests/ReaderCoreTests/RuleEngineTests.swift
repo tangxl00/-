@@ -71,16 +71,27 @@ final class RuleEngineTests: XCTestCase {
         XCTAssertEqual(seg.replacement?.replacement, "\n")
     }
 
-    func testReplacementThirdSegmentMeansReplaceFirstOnly() {
-        let seg = RuleParser.parse("div@text##a##b##")[0]
+    /// 架构文档二·三口径：「##匹配##替换##」**第三段任意字符存在**才只替换首个。
+    /// 此前按实现写死成「尾随 ## 即只替换首个」，与文档不一致，v1.2.0 一并修正。
+    func testReplacementThirdSegmentNonEmptyMeansReplaceFirstOnly() {
+        let seg = RuleParser.parse("div@text##a##b##1")[0]
         XCTAssertNotNil(seg.replacement)
-        XCTAssertTrue(seg.replacement!.replaceFirstOnly, "第三段存在 → 只替换首个")
+        XCTAssertTrue(seg.replacement!.replaceFirstOnly, "第三段非空 → 只替换首个")
+        XCTAssertEqual(seg.replacement!.pattern, "a")
+        XCTAssertEqual(seg.replacement!.replacement, "b")
     }
 
     func testReplacementTwoSegmentsReplacesAll() {
         let seg = RuleParser.parse("div@text##a##b")[0]
         XCTAssertNotNil(seg.replacement)
         XCTAssertFalse(seg.replacement!.replaceFirstOnly, "只有两段 → 全部替换")
+    }
+
+    /// 尾随 `##` 让第三段成为空串 → 仍为全量替换（这是与旧实现的关键差异点）
+    func testReplacementEmptyThirdSegmentReplacesAll() {
+        let seg = RuleParser.parse("div@text##a##b##")[0]
+        XCTAssertNotNil(seg.replacement)
+        XCTAssertFalse(seg.replacement!.replaceFirstOnly, "第三段为空 → 全部替换")
     }
 
     func testReplacementAppliesInOrder() throws {
@@ -96,15 +107,24 @@ final class RuleEngineTests: XCTestCase {
         XCTAssertEqual(out2, "y")
     }
 
-    /// 替换链按顺序叠加：`##a##b##z` 含义是「a→b，第三个 z 表示只替换首个」
+    /// 替换链确实生效、且只作用于规则输出。
+    /// 旧版这条只断言「输出里含 a 和 b」——一个完全不实现替换的实现也能通过，属无效断言。
     func testReplacementChainSequentialApplication() throws {
-        let ctx = EvalContext(
-            source: EvalSource.detect("<div><p>a</p><p>b</p></div>")
-        )
+        let ctx = EvalContext(source: EvalSource.detect("<div><p>aa</p></div>"))
         let ev = RuleEvaluator()
-        let out = try ev.evaluate(rule: "@css:p@text", in: ctx)
-        XCTAssertTrue(out.contains("a"))
-        XCTAssertTrue(out.contains("b"))
+        let plain = try ev.evaluate(rule: "@css:p@text", in: ctx)
+        XCTAssertEqual(plain, "aa", "未替换时原文应保留")
+
+        let replaced = try ev.evaluate(rule: "@css:p@text##a##b", in: ctx)
+        XCTAssertEqual(replaced, "bb", "两段式 → 全部替换")
+    }
+
+    /// 第三段非空 → 只替换首个（同一元素内多次出现时才可区分，输入用 "aa"）
+    func testReplacementThirdSegmentReplacesOnlyFirstOccurrence() throws {
+        let ctx = EvalContext(source: EvalSource.detect("<div><p>aa</p></div>"))
+        let ev = RuleEvaluator()
+        let out = try ev.evaluate(rule: "@css:p@text##a##b##1", in: ctx)
+        XCTAssertEqual(out, "ba", "只替换首个 a，第二个 a 保留")
     }
 
     // MARK: - 陷阱 4：`{{}}` 内嵌规则优先于 JS
@@ -233,11 +253,21 @@ final class RuleEngineTests: XCTestCase {
         XCTAssertEqual(out, "A", "第一个候选为空应退到第二个")
     }
 
-    func testAndOperatorInListContext() throws {
-        let ctx = EvalContext(source: EvalSource.detect(listHTML))
+    /// `&&` 并列：两侧各自对同一源求值后合并（不是「规则里有个 ul 就算过」）。
+    /// 旧版只断言非空，任何能取到值的实现都能通过，等于没测算子。
+    func testAndOperatorMergesBothSides() throws {
+        let ctx = EvalContext(source: EvalSource.detect(
+            "<div><a>一</a><b>二</b><c>忽略</c></div>"
+        ))
         let ev = RuleEvaluator()
-        let out = try ev.evaluate(rule: "@css:ul.list@li.item", in: ctx)
-        XCTAssertFalse(out.isEmpty)
+        let left = try ev.evaluateList(rule: "a@text", in: ctx)
+        let right = try ev.evaluateList(rule: "b@text", in: ctx)
+        XCTAssertEqual(left, ["一"])
+        XCTAssertEqual(right, ["二"])
+
+        let merged = try ev.evaluateList(rule: "a@text&&b@text", in: ctx)
+        XCTAssertEqual(merged, ["一", "二"], "&& 应合并两侧结果，实际：\(merged)")
+        XCTAssertFalse(merged.contains("忽略"), "不应包含未被规则命中的节点")
     }
 
     // MARK: - XPath 三条修补

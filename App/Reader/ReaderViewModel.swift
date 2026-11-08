@@ -120,6 +120,19 @@ final class ReaderViewModel: ObservableObject {
         await loadChapter(index: target.chapterIndex, restoreOffset: target.characterOffset)
     }
 
+    /// 按 UTF-16 偏移安全切片（越界收敛到字符串边界；落点若落在代理对中间则外扩到完整字符）。
+    static func utf16Slice(_ text: String, from: Int, to: Int) -> String {
+        let ns = text as NSString
+        let n = ns.length
+        let s = min(max(0, from), n)
+        let e = min(max(s, to), n)
+        var range = NSRange(location: s, length: e - s)
+        // 收敛到组合字符边界，避免把代理对 / 组合序列切成半个
+        let safe = ns.rangeOfComposedCharacterSequences(for: range)
+        range = safe
+        return ns.substring(with: range)
+    }
+
     // MARK: - 章节加载 + 分页
 
     func loadChapter(index: Int, restoreOffset: Int = 0) async {
@@ -130,8 +143,10 @@ final class ReaderViewModel: ObservableObject {
         var body: String
         if book.isLocal, let text = localText, localChapters.indices.contains(index) {
             let ch = localChapters[index]
-            let slice = String(Array(text)[ch.start..<ch.end])
-            body = slice
+            // P1#7（v1.2.0）：TXTChapter.start/end 是 NSString.length 口径的 UTF-16 偏移
+            // （TXTImporter 用 ns.lineRange / ns.length 产生），原实现拿它当 Character 下标
+            // 去切 Array(text)[...]，遇到 emoji / 组合字符会越界或错位崩溃。统一按 UTF-16 切。
+            body = ReaderViewModel.utf16Slice(text, from: ch.start, to: ch.end)
                 .replacingOccurrences(of: "\r\n", with: "\n")
                 .trimmingCharacters(in: .whitespacesAndNewlines)
         } else {
@@ -150,11 +165,14 @@ final class ReaderViewModel: ObservableObject {
                 index: index
             )
             do {
+                // P0#2（v1.2.0）：把用户替换规则与净化设置真正接入阅读链路。
+                // 此前未传 purify:，ContentProcessor 六步流水线在 App 层从未执行。
                 let content = try await bookService.fetchContent(
                     chapterUrl: chapters[index].url,
                     source: source,
                     book: snapshot,
-                    chapter: chapterSnapshot
+                    chapter: chapterSnapshot,
+                    purify: services.purifyInput()
                 )
                 body = content.text
             } catch {

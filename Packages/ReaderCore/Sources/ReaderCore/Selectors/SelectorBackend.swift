@@ -20,9 +20,6 @@
 
 import Foundation
 import SwiftSoup
-#if canImport(FoundationXML)
-import FoundationXML
-#endif
 
 // MARK: - 索引规格
 
@@ -381,10 +378,17 @@ extension SelectorParser {
 
 // MARK: - XPath 后端
 
+/// XPath 选择器门面。真实求值在 `XPathEngine`（纯 Swift，建树在 SwiftSoup DOM，
+/// 不依赖 FoundationXML 的 XMLDocument/XMLNode/XMLElement——那三者在 iOS SDK 上不存在）。
+///
+/// 保留的三条 HTML 修补（架构文档二·四，缺一条表格型站点直接取空）：
+///   · 以 `</td>` 结尾补 `<tr>`
+///   · 以 `</tr>` 或 `</tbody>` 结尾补 `<table>`
+///   · 以 `<?xml` 开头改用 XML 解析器（SwiftSoup 的 xmlParser）
 public enum XPathSelector {
     private static let maxCollection = 2048
 
-    /// HTML 修补（架构文档二·四三条，缺一条就会在表格型站点上取空）。
+    /// HTML 修补（架构文档二·四三条）。
     static func patch(_ html: String) -> String {
         var s = html.trimmingCharacters(in: .whitespacesAndNewlines)
         if s.hasSuffix("</td>") {
@@ -406,59 +410,61 @@ public enum XPathSelector {
         if let slashRange = trimmedRule.range(of: "/@", options: .backwards) {
             let nodePath = String(trimmedRule[trimmedRule.startIndex..<slashRange.lowerBound])
             let attr = String(trimmedRule[slashRange.upperBound...])
-            let nodes = (try? doc.nodes(forXPath: nodePath)) ?? []
-            var out: [String] = []
-            for n in nodes {
-                if let e = n as? XMLElement {
-                    out.append((try? e.attribute(forName: attr))?.stringValue ?? "")
-                }
+                .trimmingCharacters(in: .whitespacesAndNewlines)
+            guard !nodePath.isEmpty, !attr.isEmpty, !attr.contains("/") else {
+                throw XPathError.malformed(trimmedRule)
             }
-            return out.map { $0 }
+            let items = try XPathEngine.query(nodePath, document: doc)
+            var out: [String] = []
+            for item in items {
+                guard let e = item.element else { continue }
+                out.append((try? e.attr(attr)) ?? "")
+            }
+            return isList ? out : [out.first ?? ""]
         }
 
-        let nodes = (try? doc.nodes(forXPath: trimmedRule)) ?? []
-        var out: [String] = []
-        for n in nodes {
-            switch n {
-            case let e as XMLElement:
-                out.append(e.stringValue ?? "")
-            case let a as XMLNode:
-                out.append(a.stringValue ?? "")
-            default:
-                break
-            }
-        }
+        let items = try XPathEngine.query(trimmedRule, document: doc)
+        let out = items.map { $0.stringValue() }
         if !isList {
             return [out.first ?? ""]
         }
         return out
     }
 
-    /// 列表规则：返回 XML 节点（供逐项再求值）。
-    static func nodes(rule: String, html: String) throws -> [XMLNode] {
+    /// 列表规则：返回可再求值的源（供逐项再下钻）。
+    static func nodes(rule: String, html: String) throws -> [EvalSource] {
         guard let doc = try makeDocument(html) else { return [] }
         let path = rule.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !path.isEmpty else { return [] }
-        let nodes = (try? doc.nodes(forXPath: path)) ?? []
-        return Array(nodes.prefix(maxCollection))
+        let items = try XPathEngine.query(path, document: doc)
+        var out: [EvalSource] = []
+        for item in items.prefix(maxCollection) {
+            switch item.payload {
+            case .element(let e):
+                let html = (try? e.outerHtml()) ?? ""
+                if let src = try? EvalSource.html(html) {
+                    out.append(src)
+                } else {
+                    out.append(EvalSource.text(html))
+                }
+            case .attribute(_, let v):
+                out.append(EvalSource.text(v))
+            case .text(let t):
+                out.append(EvalSource.text(t))
+            }
+        }
+        return out
     }
 
-    static func makeDocument(_ html: String) throws -> XMLDocument? {
+    /// 建树：修补后交给 SwiftSoup。`<?xml` 开头用 XML 解析器，其余用 HTML 解析器
+    /// （与 JXDocument 建树在 Jsoup DOM 上的口径一致）。
+    static func makeDocument(_ html: String) throws -> Element? {
         let patched = patch(html)
-        // <?xml 开头走 XML 解析器
-        if patched.trimmingCharacters(in: .whitespacesAndNewlines).hasPrefix("<?xml") {
-            return try? XMLDocument(xmlString: patched, options: [.nodePreserveAll])
+        let trimmed = patched.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty { return nil }
+        if trimmed.hasPrefix("<?xml") {
+            return try SwiftSoup.parse(patched, "", Parser.xmlParser())
         }
-        // 其余先把 HTML 用 SwiftSoup 规范化为 XHTML 再交给 libxml2，
-        // 避免 libxml2 的 HTML 容错性与 JXDocument（建树在 Jsoup DOM 上）不一致。
-        let normalized: String
-        do {
-            let soup = try SwiftSoup.parse(patched)
-            try soup.outputSettings(.init().syntax(syntax: .xml).charset(.utf8).prettyPrint(pretty: false))
-            normalized = try soup.outerHtml()
-        } catch {
-            normalized = patched
-        }
-        return try? XMLDocument(xmlString: normalized, options: [])
+        return try SwiftSoup.parse(patched)
     }
 }

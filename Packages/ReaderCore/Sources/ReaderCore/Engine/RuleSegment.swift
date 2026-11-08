@@ -281,19 +281,25 @@ public enum RuleParser {
     }
 
     /// 拆 `匹配##替换##` 链。第三段是否存在决定「只替换首个」。
+    ///
+    /// v1.2.0 修正（P1#4）：判据原为「尾随 ##」，与架构文档不一致。文档原文是
+    /// 「`##匹配##替换##` 第三段任意字符存在即为只替换首个」，也就是要看**第三段本身
+    /// 是否有内容**，而不是字符串结尾有没有 `##`：
+    ///   `div@text##a##b`        → 只有两段（无第三段）→ 全部替换
+    ///   `div@text##a##b##`      → 第三段存在但为空     → 全部替换
+    ///   `div@text##a##b##1`     → 第三段非空           → 只替换首个
+    /// 注意下标：按 `##` 拆分后 parts[0] 是选择器、parts[1] 是匹配正则、
+    /// parts[2] 是替换串，文档说的「第三段」落在 parts[3]。
+    /// `ContentProcessor.applySourceReplace` 早已按文档口径实现，此前两处判据不一致，
+    /// 同一份 `replaceRegex` 在「书源级替换」与「规则级替换」上会给出不同结果。
     static func splitReplacementChain(_ text: inout String) -> ReplacementRule? {
-        // 判定必须看「尾随的 ##」，不能用 split 段数：
-        //   `div@text##a##b`    → 匹配 a、替换 b，无尾随 ## → 全部替换
-        //   `div@text##a##b##`  → 有尾随 ## → 只替换首个
-        let hasTrailingMarker = text.hasSuffix("##")
-        var body = text
-        if hasTrailingMarker { body = String(body.dropLast(2)) }
-        let parts = body.components(separatedBy: "##")
+        let parts = text.components(separatedBy: "##")
         guard parts.count >= 2 else { return nil }
         let selector = parts[0]
         let pattern = parts[1]
         let replacement = parts.count > 2 ? parts[2] : ""
-        let firstOnly = hasTrailingMarker
+        // 第三段（parts[3]）任意字符存在 → 只替换首个
+        let firstOnly = parts.count >= 4 && !parts[3].isEmpty
         text = selector
         guard !pattern.isEmpty else { return nil }
         return ReplacementRule(pattern: pattern, replacement: replacement, replaceFirstOnly: firstOnly)

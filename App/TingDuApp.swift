@@ -18,12 +18,14 @@ struct TingDuApp: App {
 
     init() {
         do {
-            container = try ModelContainer(for: SourceRecord.self, BookRecord.self, ProgressRecord.self)
+            container = try ModelContainer(
+                for: SourceRecord.self, BookRecord.self, ProgressRecord.self, ReplaceRuleRecord.self
+            )
         } catch {
             // 容器创建失败（存储损坏等）：使用内存容器兜底，避免直接崩溃
             let config = ModelConfiguration(isStoredInMemoryOnly: true)
             container = try! ModelContainer(
-                for: SourceRecord.self, BookRecord.self, ProgressRecord.self,
+                for: SourceRecord.self, BookRecord.self, ProgressRecord.self, ReplaceRuleRecord.self,
                 configurations: config
             )
         }
