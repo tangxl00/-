@@ -15,14 +15,17 @@ targets:
     platform: iOS
     sources:
       - path: App
+        excludes:
+          - "Info.plist"
     dependencies:
       - package: ReaderCore
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.tingdu.reader
         MARKETING_VERSION: "1.2.2"
-        CURRENT_PROJECT_VERSION: "2"
+        CURRENT_PROJECT_VERSION: "3"
         GENERATE_INFOPLIST_FILE: true
+        INFOPLIST_FILE: App/Info.plist
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: true
         INFOPLIST_KEY_UILaunchScreen_Generation: true
         SWIFT_VERSION: "5.10"
@@ -30,9 +33,9 @@ targets:
         CODE_SIGNING_ALLOWED: "NO"
         CODE_SIGN_IDENTITY: ""
         # P0#4（v1.2.0）：书源多为明文 http，iOS 默认 ATS 会直接拦截（需求 4.10 门槛）。
-        # 阅读器类 App 通行做法：放开明文。走 xcconfig 里的 Info.plist 键生成器，
-        # 以避免 GENERATE_INFOPLIST_FILE 与手写 Info.plist 并存。
-        INFOPLIST_KEY_NSAppTransportSecurity_NSAllowsArbitraryLoads: YES
+        # v1.2.2 修正：INFOPLIST_KEY_NSAppTransportSecurity_* 不是 Xcode 支持的生成键，
+        # 实测不进产物（v1.2.2 build 2 IPA 的 Info.plist 无此键）。改为实体 Info.plist
+        # 承载，与 GENERATE_INFOPLIST_FILE 合并生成。
 
 schemes:
   TingDu:
