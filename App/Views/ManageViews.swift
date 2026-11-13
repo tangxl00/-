@@ -21,6 +21,10 @@ struct SourceManageView: View {
     @State private var importing = false
     @State private var report: ImportReport?
     @State private var showImportSheet = false
+    /// v1.2.3：从文件导入 —— 文件选择器开关 / 已选文件回显 / 读文件错误
+    @State private var presentingSourceFilePicker = false
+    @State private var lastPickedFileNames: [String] = []
+    @State private var filePickError: String?
 
     var body: some View {
         NavigationStack {
@@ -77,10 +81,22 @@ struct SourceManageView: View {
                 if let report {
                     Section("导入结果") {
                         Text(report.headline).font(.subheadline)
+                        // v1.2.3：多文件导入时逐文件给出小结，便于定位是哪个文件没进
+                        if report.originSummaries.count > 1 {
+                            ForEach(report.originSummaries) { summary in
+                                VStack(alignment: .leading, spacing: 2) {
+                                    Text(summary.origin).font(.caption2).foregroundStyle(.secondary)
+                                    Text(summary.line).font(.caption2)
+                                }
+                            }
+                        }
                         ForEach(report.problemItems.prefix(12)) { item in
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(item.sourceName ?? "未命名源").font(.footnote)
                                 Text(item.reason ?? "").font(.caption2).foregroundStyle(.orange)
+                                if let origin = item.originDescription {
+                                    Text(origin).font(.caption2).foregroundStyle(.tertiary)
+                                }
                             }
                         }
                         if report.problemItems.count > 12 {
@@ -97,6 +113,29 @@ struct SourceManageView: View {
     private var importSheet: some View {
         NavigationStack {
             Form {
+                Section {
+                    Button {
+                        filePickError = nil
+                        presentingSourceFilePicker = true
+                    } label: {
+                        Label("从文件导入", systemImage: "doc.badge.arrow.up")
+                    }
+                    .disabled(importing)
+                    if !lastPickedFileNames.isEmpty {
+                        Text(lastPickedFileNames.joined(separator: "、"))
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .lineLimit(2)
+                            .truncationMode(.middle)
+                    }
+                    if let filePickError {
+                        Text(filePickError).font(.caption2).foregroundStyle(.red)
+                    }
+                } header: {
+                    Text("从文件选择书源")
+                } footer: {
+                    Text("支持 .json / .txt 书源文件，可多选；UTF-8 与 GBK 编码均可识别。")
+                }
                 Section("粘贴书源 JSON") {
                     TextEditor(text: $importText)
                         .frame(minHeight: 160)
@@ -114,6 +153,18 @@ struct SourceManageView: View {
             }
             .navigationTitle("导入书源")
             .navigationBarTitleDisplayMode(.inline)
+            .fileImporter(
+                isPresented: $presentingSourceFilePicker,
+                allowedContentTypes: sourceFileContentTypes,
+                allowsMultipleSelection: true
+            ) { outcome in
+                switch outcome {
+                case .success(let urls):
+                    importSourceFiles(urls)
+                case .failure(let error):
+                    filePickError = "选择文件失败：\(error.localizedDescription)"
+                }
+            }
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("关闭") { showImportSheet = false }
@@ -144,6 +195,52 @@ struct SourceManageView: View {
         } catch {
             report = ImportReport(items: [], successCount: 0, failureCount: 1,
                                   duplicateCount: 0, jsDegradedCount: 0, unsupportedTypeCount: 0)
+        }
+    }
+
+    /// v1.2.3：文件选择器接受的类型。
+    /// `.json` 之外还要收 `.text` / `.plainText` —— 书源文件常以 .txt 后缀分发，
+    /// 只收 .json 会让用户大部分文件在选择器里是灰的、根本选不中。
+    private var sourceFileContentTypes: [UTType] {
+        var types: [UTType] = [.json, .plainText, .text]
+        if let txt = UTType(filenameExtension: "txt") { types.append(txt) }
+        return types
+    }
+
+    /// 读取选中的书源文件并走核心层合并导入。
+    ///
+    /// 多文件时逐个读、读失败也记成一条失败（不中断其余文件），交给
+    /// `BookSourceImportService.importFiles` 汇总成一份 report —— 与粘贴/URL 同口径。
+    private func importSourceFiles(_ urls: [URL]) {
+        importing = true
+        defer { importing = false }
+
+        guard !urls.isEmpty else { return }
+        lastPickedFileNames = urls.map(\.lastPathComponent)
+
+        var drafts: [SourceFileDraft] = []
+        drafts.reserveCapacity(urls.count)
+        for url in urls {
+            // 安全作用域：选择器给的是 security-scoped URL，不 start 直接读会失败
+            let secured = url.startAccessingSecurityScopedResource()
+            defer { if secured { url.stopAccessingSecurityScopedResource() } }
+            do {
+                let data = try Data(contentsOf: url)
+                drafts.append(SourceFileDraft(fileName: url.lastPathComponent, data: data))
+            } catch {
+                drafts.append(SourceFileDraft(
+                    fileName: url.lastPathComponent,
+                    data: nil,
+                    readError: error.localizedDescription
+                ))
+            }
+        }
+
+        report = services.importSourcesFromFiles(drafts)
+        filePickError = nil
+        // 与粘贴入口一致：有可用源才算「这次导入有效」，清空已选文件回显
+        if report?.usableCount ?? 0 > 0 {
+            lastPickedFileNames = []
         }
     }
 }

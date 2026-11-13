@@ -22,7 +22,7 @@ TingDu/
 │       │   ├── Selectors/   # CSS / XPath 风格选择器（非 JS）
 │       │   ├── Core/        # 工具
 │       │   └── Resources/   # gbk-table.bin（GBK→Unicode 二进制映射表）
-│       └── Tests/           # 177 个 XCTest 用例（Linux swift test 全绿）
+│       └── Tests/           # 235 个 XCTest 用例（Linux swift test 全绿）
 ├── project.yml              # XcodeGen 工程定义
 └── .github/workflows/ios.yml  # CI：Linux 单测 + macOS iOS 编译
 ```
@@ -39,7 +39,7 @@ open TingDu.xcodeproj      # 选 TingDu scheme，iOS Simulator 运行
 
 ```bash
 cd Packages/ReaderCore
-swift test                 # 177 tests, 0 failures
+swift test                 # 235 tests, 0 failures
 ```
 
 覆盖：规则引擎语义（@css/@@/@XPath/@Json/##正则##/{{}}/@put/@get/$1 反填/0 基索引/

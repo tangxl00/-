@@ -1,3 +1,33 @@
+== TingDu v1.2.3 Linux 自测（书源「从文件导入」入口）==
+Date: 2026-11-13T20:10:10+08:00
+Toolchain: Swift version 6.1.2 (swift-6.1.2-RELEASE)
+
+改动范围：App/Views/ManageViews.swift（导入书源页新增「从文件导入」Section + fileImporter + 结果按文件分组）、
+App/Storage/AppServices.swift（新增 importSourcesFromFiles + 抽出共用落库 persistImported）、
+Packages/ReaderCore/Sources/ReaderCore/Domain/BookSourceFileImporter.swift（新增：解码 + 多文件合并导入 + 按来源汇总）、
+BookSourceImportService.swift（importPayload 抽出 parsePayload 内层供多文件复用；ImportItemResult 增 originDescription）、
+Tests/ReaderCoreTests/BookSourceFileImportTests.swift（新增 13 用例）、project.yml（版本号 1.2.3 / build 4）。
+
+$ swift build --build-tests   # 本轮全新构建（2026-11-13 20:09 完成，依赖走本地镜像仓库）
+Build complete! (154.65s)  EXIT=0
+
+$ ./.build/debug/ReaderCorePackageTests.xctest
+
+--- 以下为本次运行原始输出中的相关行（按日志顺序）---
+Test Suite 'All tests' started at 2026-11-13 20:10:09.936
+Test Suite 'debug.xctest' started at 2026-11-13 20:10:09.938
+Test Suite 'BookSourceFileImportTests' started at 2026-11-13 20:10:09.975
+Test Suite 'BookSourceFileImportTests' passed at 2026-11-13 20:10:10.144
+	 Executed 13 tests, with 0 failures (0 unexpected) in 0.169 (0.169) seconds
+	 Executed 13 tests, with 0 failures (0 unexpected) in 0.001 (0.001) seconds
+Test Suite 'debug.xctest' passed at 2026-11-13 20:10:10.504
+	 Executed 235 tests, with 0 failures (0 unexpected) in 0.565 (0.565) seconds
+Test Suite 'All tests' passed at 2026-11-13 20:10:10.504
+	 Executed 235 tests, with 0 failures (0 unexpected) in 0.565 (0.565) seconds
+EXIT=0
+
+基线对照：v1.2.2 = 222 用例；v1.2.3 = 235 用例（+13，全部落在 BookSourceFileImportTests）。
+
 == TingDu v1.2.2 Linux 自测（免责页按钮锁死 P0 修复轮）==
 Date: 2026-11-13T16:52:29+08:00
 Toolchain: Swift version 6.1.2 (swift-6.1.2-RELEASE)

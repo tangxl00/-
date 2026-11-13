@@ -46,6 +46,9 @@ public struct ImportItemResult: Sendable, Identifiable {
     /// 命中的 JS 位置明细（outcome == .jsDegraded 时非空）
     public var jsHits: [JSHit]
     public var source: BookSource?
+    /// 来源描述（v1.2.3）：如「文件：xxx.json」「手动粘贴」「https://…」。
+    /// 多文件导入时用于把失败条目定位到具体文件；单文件/粘贴入口下仅供 UI 补充说明。
+    public var originDescription: String? = nil
     /// 该源用到的 java.* 方法（能力探测）
     public var javaMethods: [String] = []
     /// 其中本版未实现的方法（能力探测缺项，UI 提示精确到方法名）
@@ -137,14 +140,23 @@ public struct BookSourceImportService: Sendable {
     ///   ② JSON 数组（多个书源）
     ///   ③ `{"sources":[...]}` 这类民间变体
     public func importPayload(_ payload: ImportPayload) -> ImportReport {
-        var items: [ImportItemResult] = []
         var seen = existingURLs
+        return summarize(parsePayload(payload, seen: &seen, startIndex: 1))
+    }
+
+    /// 解析单份文本。`index` 从 `startIndex` 起连续编号，`seen` 跨调用累积。
+    func parsePayload(
+        _ payload: ImportPayload,
+        seen: inout Set<String>,
+        startIndex: Int
+    ) -> [ImportItemResult] {
+        var items: [ImportItemResult] = []
 
         guard let root = JsonValue.parse(payload.text) else {
             let preview = payload.text.trimmingCharacters(in: .whitespacesAndNewlines)
             items.append(
                 ImportItemResult(
-                    index: 1,
+                    index: startIndex,
                     sourceName: nil,
                     sourceURL: nil,
                     outcome: .failed,
@@ -155,14 +167,14 @@ public struct BookSourceImportService: Sendable {
                     source: nil
                 )
             )
-            return summarize(items)
+            return stamped(items, payload: payload)
         }
 
         let candidates = extractCandidates(from: root)
         if candidates.isEmpty {
             items.append(
                 ImportItemResult(
-                    index: 1,
+                    index: startIndex,
                     sourceName: nil,
                     sourceURL: nil,
                     outcome: .failed,
@@ -171,11 +183,11 @@ public struct BookSourceImportService: Sendable {
                     source: nil
                 )
             )
-            return summarize(items)
+            return stamped(items, payload: payload)
         }
 
         for (offset, candidate) in candidates.enumerated() {
-            let index = offset + 1
+            let index = startIndex + offset
             guard case .object(let obj) = candidate else { continue }
             let name = obj["bookSourceName"]?.text
             let url = obj["bookSourceUrl"]?.text
@@ -274,7 +286,16 @@ public struct BookSourceImportService: Sendable {
             )
         }
 
-        return summarize(items)
+        return stamped(items, payload: payload)
+    }
+
+    /// 给条目补上来源描述（多文件导入时 UI 据此定位到具体文件）并统一编号起点。
+    private func stamped(_ items: [ImportItemResult], payload: ImportPayload) -> [ImportItemResult] {
+        var out = items
+        for i in out.indices where out[i].originDescription == nil {
+            out[i].originDescription = payload.originDescription
+        }
+        return out
     }
 
     // MARK: 内部
@@ -310,7 +331,8 @@ public struct BookSourceImportService: Sendable {
         return try? JSONDecoder().decode(BookSource.self, from: data)
     }
 
-    private func summarize(_ items: [ImportItemResult]) -> ImportReport {
+    /// internal（v1.2.3）：`BookSourceFileImporter` 的多文件入口要共用同一汇总口径。
+    func summarize(_ items: [ImportItemResult]) -> ImportReport {
         ImportReport(
             items: items,
             successCount: items.filter(\.isImported).count,

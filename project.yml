@@ -22,8 +22,8 @@ targets:
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.tingdu.reader
-        MARKETING_VERSION: "1.2.2"
-        CURRENT_PROJECT_VERSION: "3"
+        MARKETING_VERSION: "1.2.3"
+        CURRENT_PROJECT_VERSION: "4"
         GENERATE_INFOPLIST_FILE: true
         INFOPLIST_FILE: App/Info.plist
         INFOPLIST_KEY_UIApplicationSceneManifest_Generation: true

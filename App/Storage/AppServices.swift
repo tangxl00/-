@@ -102,10 +102,26 @@ final class AppServices: ObservableObject {
             remoteURL: remoteURL
         )
         let report = service.importPayload(payload)
+        persistImported(report, existingCount: existing.count)
+        return report
+    }
 
-        // 落库：只写新导入成功的
+    /// 从本地文件导入书源（v1.2.3，P0-1 三入口里的「本地文件」）。
+    ///
+    /// App 层只负责读文件（安全作用域 + Data），编码识别 / JSON 解析 / 跨文件去重
+    /// 全在 `BookSourceImportService.importFiles`，与粘贴、URL 两条入口共用同一口径。
+    func importSourcesFromFiles(_ drafts: [SourceFileDraft]) -> ImportReport {
+        let existing = Set(allSources().map(\.bookSourceUrl))
+        let service = BookSourceImportService(existingURLs: existing)
+        let report = service.importFiles(drafts)
+        persistImported(report, existingCount: existing.count)
+        return report
+    }
+
+    /// 落库：只写新导入成功的条目（三条导入口径一致）。
+    private func persistImported(_ report: ImportReport, existingCount: Int) {
         let context = ModelContext(container)
-        var order = existing.count
+        var order = existingCount
         for item in report.items where item.isImported {
             guard let source = item.source,
                   let data = try? JSONEncoder().encode(source) else { continue }
@@ -121,7 +137,6 @@ final class AppServices: ObservableObject {
         }
         try? context.save()
         refreshSourceCounts()
-        return report
     }
 
     /// 通过 URL 导入（服务内部拉取远端内容；异步）。
@@ -129,23 +144,7 @@ final class AppServices: ObservableObject {
         let existing = Set(allSources().map(\.bookSourceUrl))
         let service = BookSourceImportService(existingURLs: existing)
         let report = try await service.importRemote(url: urlString, client: client)
-        let context = ModelContext(container)
-        var order = existing.count
-        for item in report.items where item.isImported {
-            guard let source = item.source,
-                  let data = try? JSONEncoder().encode(source) else { continue }
-            context.insert(SourceRecord(
-                url: source.bookSourceUrl,
-                name: source.bookSourceName,
-                group: source.bookSourceGroup ?? "",
-                enabled: source.enabled,
-                sortOrder: order,
-                payload: data
-            ))
-            order += 1
-        }
-        try? context.save()
-        refreshSourceCounts()
+        persistImported(report, existingCount: existing.count)
         return report
     }
 
