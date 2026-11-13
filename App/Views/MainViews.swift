@@ -45,7 +45,6 @@ struct RootView: View {
 
 struct DisclaimerView: View {
     var onAccept: () -> Void
-    @State private var scrolled = false
 
     var body: some View {
         VStack(spacing: 20) {
@@ -65,9 +64,11 @@ struct DisclaimerView: View {
             }
             .frame(maxHeight: 320)
 
+            // v1.2.2：移除「读完条款才能点」滚动门禁——条款仅 5 条无需滚动，
+            // 而原 scrolled 开关无任何置 true 代码，导致按钮永久禁用（P0）。
+            // 免责声明是合规提示，不做强制阅读门禁，按钮直接可点。
             Button("同意并继续") { onAccept() }
                 .buttonStyle(.borderedProminent)
-                .disabled(!scrolled)
 
             Button("不同意，退出") { exit(0) }
                 .font(.footnote)
